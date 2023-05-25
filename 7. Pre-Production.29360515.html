@@ -1,221 +1,1284 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html class="no-js" lang="en" data-vp-page-id="29360515">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <meta name="source-last-modified" content="2023-05-25T05:40Z" />
 
-    
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="source-last-modified" content="2023-05-25T05:40Z">
-
-    <link rel="shortcut icon" href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0">
+    <link
+      rel="shortcut icon"
+      href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+    />
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="7. Pre-Production">
+    <meta name="title" content="7. Pre-Production" />
 
+    <link rel="stylesheet" href="css/app.css" />
 
-    <link rel="stylesheet" href="css/app.css">
+    <script id="search-worker" type="javascript/worker">
+      onmessage = function(event) {
+          // dispatch events to handling functions
+          var message = event.data;
 
+          if ((message.type === 'setup') && message.baseUrl) {
+              setup(message.baseUrl);
+          }
 
+          if (message.type === 'search-request') {
+              search(message.query);
+          }
+      }
 
-<script id="search-worker" type="javascript/worker">
-    onmessage = function(event) {
-        // dispatch events to handling functions
-        var message = event.data;
+      var searchIndex;
 
-        if ((message.type === 'setup') && message.baseUrl) {
-            setup(message.baseUrl);
-        }
+      function setup(baseUrl) {
+          importScripts(
+              baseUrl + 'js/lunr.js',
+              baseUrl + 'js/lunr-index.js',
+              baseUrl + 'js/lunr-data.js'
+          );
+          try {
+              // load lunr-extras if it exists, which contains language-specific files for languages other than english
+              importScripts(baseUrl + 'js/lunr-extras.js');
+          } catch (e) {}
+          searchIndex = lunr.Index.load(lunrIndex);
+      }
 
-        if (message.type === 'search-request') {
-            search(message.query);
-        }
-    }
-
-    var searchIndex;
-
-    function setup(baseUrl) {
-        importScripts(
-            baseUrl + 'js/lunr.js',
-            baseUrl + 'js/lunr-index.js',
-            baseUrl + 'js/lunr-data.js'
-        );
-        try {
-            // load lunr-extras if it exists, which contains language-specific files for languages other than english
-            importScripts(baseUrl + 'js/lunr-extras.js');
-        } catch (e) {}
-        searchIndex = lunr.Index.load(lunrIndex);
-    }
-
-    function search(query) {
-        var searchHits = searchIndex.search(query);
-        var results = searchHits.map(function (result) {
-            return lunrData.filter(function (d) {
-                return d.id === result.ref;
-            })[0]
-        });
-        postMessage({ type: 'search-results', results: results, query: query });
-    }
-</script>
+      function search(query) {
+          var searchHits = searchIndex.search(query);
+          var results = searchHits.map(function (result) {
+              return lunrData.filter(function (d) {
+                  return d.id === result.ref;
+              })[0]
+          });
+          postMessage({ type: 'search-results', results: results, query: query });
+      }
+    </script>
     <title>7. Pre-Production</title>
+  </head>
+  <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
+  <body pageid="29360515">
+    <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
 
-</head>
-    <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
-    <body pageid="29360515">
-        <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
+    <header class="header hc-header-background-color">
+      <nav class="header__navigation">
+        <div id="vp-js-mobile__header-bar"></div>
 
-
-
-<header class="header hc-header-background-color">
-    <nav class="header__navigation">
-        <div id="vp-js-mobile__header-bar">
-        </div>
-
-        <div class="off-canvas in-canvas-for-large position-right hc-header-background-color" id="site-navigation" data-off-canvas data-transition="overlap">
-            <div class="top-bar header__navigation--large hc-header-background-color hc-header-font-color" style="max-width: 100%">
-                <div class="top-bar-left">
-                    <ul class="menu hc-header-background-color list-none p-0 m-0">
-                        <li class="menu-text align-self-middle header__navigation--logo">
-                            <a href="Tech Guide.31260673.html">
-                                <img src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0" alt="Tech-Team-Tracker" title="Tech-Team-Tracker">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="top-bar-right no-print">
-                    <div class="header__navigation--large__menu hc-header-background-color">
-
-                            <ul class="menu">
-                                <li class="small-order-1 large-order-6">
-    
-
-    <div data-vp-id="search-bar-placeholder" data-vp-component="search-bar" class="vp-search-bar" aria-hidden="true">
-        <form action="/search.html" method="GET" class="vp-search-bar__input-container">
-            <div data-vp-component="search-input" data-vp-variant="border" class="vp-search-input vp-search-input--border">
-                <input type="search" id="search-texbox" autocomplete="off" class="vp-search-input__input" style="margin-right: 0;">
-                <div class="vp-search-input__icon" aria-hidden="true">
-                    <span class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"></span>
-                </div>
-            </div>
-        </form>
-        <div id="search-suggestion-container" class="vp-search-suggestion-panel" data-vp-component="search-suggestion"></div>
-        <template id="search-suggestion-option-template">
-            <div class="vp-search-suggestion-option-container vp-search-form__suggestion">
-                <a class="vp-search-suggestion-option vp-search-form__suggestion" href=""></a>
-            </div>
-        </template>
-    </div>
-
-                                </li>
-                            </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </nav>
-</header>
-
-<main>
-
-
-
-<div class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide">
-    <div class="flex">
-
-        <div id="exp-navigation-wrapper" class="hidden lg:block">
-            <iframe src="toc.html?pageId=29360515" class="border-0"></iframe>
-        </div>
-
-
-        <div class="vp-article__content-panel flex-auto grid-container full js-loading" id="article-content">
-            <article role="article">
-                <header>
-<nav aria-label="Breadcrumb" role="navigation">
-    <div class="breadcrumbs-wrapper">
-        <ol class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb">
-                <li class="js-hide-until-loaded">
-                    <a href="Tech Guide.31260673.html" rel="prev" target="_self" class="js-breadcrumbs-truncate">Tech Guide</a>
+        <div
+          class="off-canvas in-canvas-for-large position-right hc-header-background-color"
+          id="site-navigation"
+          data-off-canvas
+          data-transition="overlap"
+        >
+          <div
+            class="top-bar header__navigation--large hc-header-background-color hc-header-font-color"
+            style="max-width: 100%"
+          >
+            <div class="top-bar-left">
+              <ul class="menu hc-header-background-color list-none p-0 m-0">
+                <li
+                  class="menu-text align-self-middle header__navigation--logo"
+                >
+                  <a href="Tech Guide.31260673.html">
+                    <img
+                      src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+                      alt="Tech-Team-Tracker"
+                      title="Tech-Team-Tracker"
+                    />
+                  </a>
                 </li>
-            <li class="breadcrumbs--active js-hide-until-loaded">
-                <a href="7. Pre-Production.29360515.html" target="_self" aria-current="page">7. Pre-Production</a>
-            </li>
-        </ol>
-        <div class="breadcrumbs-wrapper__scroll-mask"></div>
-    </div>
-</nav>
-                    <!-- CSS class article__heading is deprecated and will be removed in the future -->
-                    <h1 class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading" role="heading" data-scroll-heading-rank="1" data-scroll-original-heading-rank="1" data-scroll-relative-heading-rank="1" id="no-src_generated-id-ecaec817c8af2d6d4c3ffec628af366516c2dc0be118d029df5ab6c84da33b6f"><span class="js-hide-until-loaded">7. Pre-Production</span></h1>
-                </header>
-                <section class="page" id="content" role="main">
-                    <div id="vp-js-desktop__navigation__skip-to-navigation-target"></div>
-                    <div id="main-content" class="wiki-content article__content js-tocBot-content js-hide-until-loaded">
-                        <p>Pre-Production is the&nbsp; environment where Network Participants test their development to receive certification to move to ONDC Production Environment.</p><p></p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>ONDC Pre-Production Endpoints</strong></p></div></div><p><span style="color: rgb(0,184,217);">Registry Endpoint</span></p><div class="scroll-code scroll-highlighted-code-block" data-language="none" data-title-type="code" data-theme="defaultnew" style="  counter-reset: scroll-code-numbering 0;"><div class="defaultnew content">
-<div class="line"><code class="plain">https:</code><code class="comments">//preprod.registry.ondc.org/ondc/lookup</code></div>
-<div class="line"><code class="plain">https:</code><code class="comments">//preprod.registry.ondc.org/ondc/vlookup</code></div>
-</div>
-</div><p><span style="color: rgb(0,184,217);">Gateway Endpoint</span></p><div class="scroll-code scroll-highlighted-code-block" data-language="none" data-title-type="code" data-theme="defaultnew" style="  counter-reset: scroll-code-numbering 0;"><div class="defaultnew content">
-<div class="line"><code class="plain">https:</code><code class="comments">//preprod.gateway.ondc.org/search</code></div>
-<div class="line"><code class="plain">https:</code><code class="comments">//preprod.gateway.ondc.org/on_search</code></div>
-</div>
-</div><hr><div class="panel" style="background-color: #E6FCFF;border-width: 1px;"><div class="panelContent" style="background-color: #E6FCFF;">
-<p><strong>Registry</strong></p>
-</div></div><p>The process for entry to pre-production registry can be found in the following document:</p><a shape="rect" href="https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md" data-card-appearance="block" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md" data-scroll-link-local="false">https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md</a><p> </p><div class="panel" style="background-color: #E3FCEF;border-width: 1px;"><div class="panelContent" style="background-color: #E3FCEF;">
-<p><strong>API Integration</strong></p>
-</div></div><p>For Pre-Production, the network participants need to complete the end-to-end testing with ONDC reference applications and two different Network participants who are present in pre-production registry.</p><p>Being a Buyer Network participant, kindly test the end-to-end transaction flow with <a shape="rect" href="https://ref-seller-app-preprod.ondc.org/" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://ref-seller-app-preprod.ondc.org/" data-scroll-link-local="false">https://ref-seller-app-preprod.ondc.org/</a>.</p><p>Being a seller Network participant, kindly test the end-to-end transaction flow with <a shape="rect" href="https://buyer-app-preprod.ondc.org/login" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://buyer-app-preprod.ondc.org/login" data-scroll-link-local="false">https://buyer-app-preprod.ondc.org/login</a>.</p><p></p><div class="panel" style="background-color: #EAE6FF;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
-<p><strong>Validation Checklist</strong></p>
-</div></div><p>The checklist provides the&nbsp; steps under technical, operational and regulatory compliance that must be completed to qualify to move into Production environment.</p><p>It includes:</p><ol start="1"><li><p>Technical Compliance</p></li><li><p>Operational Compliance</p></li><li><p>Regulatory Compliance</p></li></ol><p>&nbsp;</p><ul class="inline-task-list" data-inline-tasks-content-id="29360515"><li data-inline-task-id="7"><span class="placeholder-inline-tasks">&nbsp;<span style="color: rgb(0,184,217);">Technical Compliance</span>:</span></li></ul><div class="table-wrap"><table data-layout="default" data-local-id="4241fa30-da88-4aba-be94-798107e56e3d" class="confluenceTable"><colgroup span="1"><col span="1"><col span="1" style="width: 511.0px;"><col span="1" style="width: 207.0px;"></colgroup><thead><tr><th colspan="1" rowspan="1" class="numberingColumn confluenceTh"><p></p></th><th colspan="1" rowspan="1" data-highlight-colour="#ffebe6" class="confluenceTh" style="background-color:#ffebe6;"><p><strong>Compliance</strong></p></th><th colspan="1" rowspan="1" data-highlight-colour="#ffebe6" class="confluenceTh" style="background-color:#ffebe6;"><p><strong>Status</strong></p></th></tr></thead><tbody><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>1</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Implement latest version of the protocol.</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>2</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Log Verification of API Contracts</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>3</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Submission of App Scan Report*</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>4</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Submission of security controls Infrastructure VAPT Report**</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>5</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Submission of APK for Buyer Apps</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr></tbody></table></div><p></p><div class="expand-container"><p class="expand-control-text">Note: Refer to the following thresholds for App Scan and VAPT</p><div class="expand-content"><p>*Severity 1 = 0 (NPs will be given 3 days to resolve)<br clear="none">Severity 2 &lt;= 3 (NPs will be given 1 month to resolve)<br clear="none">Severity 3 &lt;= 10 <br clear="none">**No incidents, vulnerabilities reported.</p></div></div><p>&nbsp;</p><ul class="inline-task-list" data-inline-tasks-content-id="29360515"><li data-inline-task-id="8"><span class="placeholder-inline-tasks"><strong><span style="color: rgb(0,184,217);">Log Validation:</span></strong></span></li></ul><p>Kindly go through the below documents based on domain to understand the <span style="color: rgb(0,184,217);">business test cases </span>required for Production go ahead. Network Participants need to test the logs based on the test cases using the log utility and share the final logs with ONDC tech team. </p><h2 id="id-7.Pre-Production-Retail" data-scroll-heading-rank="2" data-scroll-original-heading-rank="3" data-scroll-relative-heading-rank="2" class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2">Retail</h2><p><a shape="rect" href="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing" data-scroll-link-local="false">https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing</a> </p><h2 id="id-7.Pre-Production-Logistics" data-scroll-heading-rank="2" data-scroll-original-heading-rank="3" data-scroll-relative-heading-rank="2" class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2">Logistics</h2><p><a shape="rect" href="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing" data-scroll-link-local="false">https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing</a> </p><h2 id="id-7.Pre-Production-IGM" data-scroll-heading-rank="2" data-scroll-original-heading-rank="3" data-scroll-relative-heading-rank="2" class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2">IGM</h2><p><a shape="rect" href="https://docs.google.com/document/d/1O-11TsUGLLvYgq1Fo-HNIkGIlOelBJH4/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/document/d/1O-11TsUGLLvYgq1Fo-HNIkGIlOelBJH4/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true" data-scroll-link-local="false">https://docs.google.com/document/d/1O-11TsUGLLvYgq1Fo-HNIkGIlOelBJH4/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true</a> </p><h2 id="id-7.Pre-Production-B2B" data-scroll-heading-rank="2" data-scroll-original-heading-rank="3" data-scroll-relative-heading-rank="2" class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2">B2B</h2><p><a shape="rect" href="https://docs.google.com/document/d/1ew9a4AzWgwFHcGqRmnv4XT_oRzHC4Qsl/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/document/d/1ew9a4AzWgwFHcGqRmnv4XT_oRzHC4Qsl/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true" data-scroll-link-local="false">https://docs.google.com/document/d/1ew9a4AzWgwFHcGqRmnv4XT_oRzHC4Qsl/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true</a> </p><p></p><p>Test the logs at your end using the <span style="color: rgb(0,184,217);">log utility</span> provided by ONDC.</p><a shape="rect" href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility" data-card-appearance="block" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility" data-scroll-link-local="false">https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility</a><p></p><p>Location to submit logs to validation:</p><a shape="rect" href="https://github.com/ONDC-Official/verification-logs" data-card-appearance="block" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://github.com/ONDC-Official/verification-logs" data-scroll-link-local="false">https://github.com/ONDC-Official/verification-logs</a><p></p><ul class="inline-task-list" data-inline-tasks-content-id="29360515"><li data-inline-task-id="9"><span class="placeholder-inline-tasks"><span style="color: rgb(0,184,217);">Operational Compliance</span>:</span></li></ul><div class="table-wrap"><table data-layout="wide" data-local-id="48bda301-fd4b-487c-951a-874923b25971" class="confluenceTable"><colgroup span="1"><col span="1"><col span="1" style="width: 340.0px;"><col span="1" style="width: 340.0px;"></colgroup><thead><tr><th colspan="1" rowspan="1" class="numberingColumn confluenceTh"><p></p></th><th colspan="2" rowspan="1" data-highlight-colour="#4285f4" class="confluenceTh" style="background-color:#4285f4;"><p><strong>Common for Buyer Node, Seller Node and Technology Service Providers</strong></p></th></tr></thead><tbody><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>1</p></td><td colspan="1" rowspan="1" data-highlight-colour="#cccccc" class="confluenceTd" style="background-color:#cccccc;"><p>Compliance (Process | Description)</p></td><td colspan="1" rowspan="1" data-highlight-colour="#cccccc" class="confluenceTd" style="background-color:#cccccc;"><p>Status</p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>2</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p><a shape="rect" href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p22" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p22" data-scroll-link-local="false"><u>Customer Support Implementation (GRM)</u></a><br clear="none">Network Participants must set up a customer support team to deal with any returns, refunds, customer grievances etc. Refer to the document provided for details.</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>3</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p><a shape="rect" href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_55" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_55" data-scroll-link-local="false"><u>Reconciliation and Payment Settlement</u></a><br clear="none">Network Participants must set up a Reconciliation and Payment Settlement Mechanism.<br clear="none">In the initial phase, only buyer applications will be collecting payments and COD orders will not be entertained. As such, for Beta Launch, all Buyer applications must have a Reconciliation and Payment Settlement mechanism in place.<br clear="none">Refer to the document provided for details.</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>4</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p><a shape="rect" href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p30" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p30" data-scroll-link-local="false"><u>Support to Delivery Agents</u></a><br clear="none">Network Participants (Seller Nodes and Logistics Nodes) must set up a process for supporting delivery agents to deliver orders in a prompt and safe manner. <br clear="none">Refer to the document provided for details.</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>5</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p><a shape="rect" href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_0" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_0" data-scroll-link-local="false"><u>Process for Monitoring of KPIs &amp; SLAs</u></a><br clear="none">Certain service level commitments are expected from Network Participants. These are:<br clear="none">Transaction drop rate (&lt;1%) </p><p>Seller Cancellations (&lt;5%) </p><p>Transaction drop rate (&lt;5%) </p><p>Delivery within committed duration (&gt;95%)</p><p>Participants are expected to track the aforementioned KPIs through an Order Status Dashboard and should ensure that the commitments are met. Daily monitoring of the dashboard will be conducted by ONDC to identify breach of SLAs for order execution/ customer support. Refer to the document provided for more details.</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>6</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Self Certification of <a shape="rect" href="7. Pre-Production.29360515.html#" rel="nofollow" data-scroll-target-source-id="29360515" class=" scroll-document-link" data-scroll-link-type="document" data-scroll-link-target="https://ondc-issue-logging-cohort1.atlassian.net/wiki/spaces/TTT/pages/29360515/7.+Pre-Production" data-scroll-link-target-source-id="29360515"><u>MVP Use Cases Testing</u></a> (Last tab)</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr></tbody></table></div><p></p><div class="table-wrap"><table data-layout="wide" data-local-id="266ee2a0-1e9d-4539-b016-22c7574e6b11" class="confluenceTable"><colgroup span="1"><col span="1"><col span="1" style="width: 756.0px;"><col span="1" style="width: 162.0px;"></colgroup><thead><tr><th colspan="1" rowspan="1" class="numberingColumn confluenceTh"><p></p></th><th colspan="2" rowspan="1" data-highlight-colour="#4285f4" class="confluenceTh" style="background-color:#4285f4;"><p><strong>Seller Nodes ONLY</strong></p></th></tr></thead><tbody><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>1</p></td><td colspan="1" rowspan="1" data-highlight-colour="#cccccc" class="confluenceTd" style="background-color:#cccccc;"><p>Compliance (Process | Description)</p></td><td colspan="1" rowspan="1" data-highlight-colour="#cccccc" class="confluenceTd" style="background-color:#cccccc;"><p>Status</p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>2</p></td><td colspan="1" rowspan="1" data-highlight-colour="#ffffff" class="confluenceTd" style="background-color:#ffffff;"><p>Ensure Sellers / Stores Upload Back &amp; Side images of mandatory information</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>3</p></td><td colspan="1" rowspan="1" data-highlight-colour="#ffffff" class="confluenceTd" style="background-color:#ffffff;"><p>Identification and training of sellers<br clear="none">Seller nodes will be expected to identify their sellers and share their details with ONDC. Refer to the <a shape="rect" href="https://docs.google.com/spreadsheets/d/1VBJQODzCOo4PxcfQCMs714MeWKqSg-Hn/edit#gid=1475474318" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/spreadsheets/d/1VBJQODzCOo4PxcfQCMs714MeWKqSg-Hn/edit#gid=1475474318" data-scroll-link-local="false"><u>format for sharing Seller Profiles</u></a> for sharing seller details with ONDC Team.</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr><tr><td colspan="1" rowspan="1" class="numberingColumn confluenceTd"><p>4</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>Confirming seller preparedness for successful handling of orders from ONDC<br clear="none">Sellers must be prepared to take orders through ONDC. The following questionnaire can help determine seller preparedness:<a shape="rect" href="https://docs.google.com/document/d/14nnU6QKfJj4_xQC2opWP6AbKUQSZ1v_ALIApqP6R2a8/edit" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/document/d/14nnU6QKfJj4_xQC2opWP6AbKUQSZ1v_ALIApqP6R2a8/edit" data-scroll-link-local="false"><u>Questionnaire for Sellers</u></a></p></td><td colspan="1" rowspan="1" class="confluenceTd"><p></p></td></tr></tbody></table></div><p></p><ul class="inline-task-list" data-inline-tasks-content-id="29360515"><li data-inline-task-id="10"><span class="placeholder-inline-tasks"><span style="color: rgb(0,184,217);">Regulatory Compliance</span></span></li></ul><p>Please refer to below document for Policy Compliance and MVP Compliance.</p><p><a shape="rect" href="https://docs.google.com/spreadsheets/d/1G7NFGmhIy5u6H3fqjl1b-Qt8Xz0SPL1Mk8EiVBeSe_o/edit?usp=sharing" data-card-appearance="inline" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/spreadsheets/d/1G7NFGmhIy5u6H3fqjl1b-Qt8Xz0SPL1Mk8EiVBeSe_o/edit?usp=sharing" data-scroll-link-local="false">https://docs.google.com/spreadsheets/d/1G7NFGmhIy5u6H3fqjl1b-Qt8Xz0SPL1Mk8EiVBeSe_o/edit?usp=sharing</a> </p><p></p><div class="expand-container"><p class="expand-control-text">Note:</p><div class="expand-content"><ul><li><p>An NP must meet all the requirements provided in the document and obtain a go-ahead from ONDC Tech and Ops team for move to Production</p></li></ul><ul><li><p>In addition to the compliances captured in the checklist an NP may also be required to go through functional testing with the ONDC team</p></li><li><p>The checklist provided above is evolving and ONDC may update the same as per any contingent requirement in the future</p></li></ul></div></div>
-<nav id="ht-post-nav">
-        <a href="6. Staging Environment.29720683.html" class="ht-post-nav-prev">
-            <svg width="22px" height="22px" viewbox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
-                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2" sketch:type="MSShapeGroup" transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
-                </g>
-            </svg>
-            <span>6. Staging Environment</span>
-        </a>
-
-        <a href="8. Production.30867487.html" class="ht-post-nav-next">
-            <svg width="22px" height="22px" viewbox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
-                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2" sketch:type="MSShapeGroup" transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
-                </g>
-            </svg>
-            <span>8. Production</span>
-        </a>
-</nav>
+              </ul>
+            </div>
+            <div class="top-bar-right no-print">
+              <div
+                class="header__navigation--large__menu hc-header-background-color"
+              >
+                <ul class="menu">
+                  <li class="small-order-1 large-order-6">
+                    <div
+                      data-vp-id="search-bar-placeholder"
+                      data-vp-component="search-bar"
+                      class="vp-search-bar"
+                      aria-hidden="true"
+                    >
+                      <form
+                        action="/search.html"
+                        method="GET"
+                        class="vp-search-bar__input-container"
+                      >
+                        <div
+                          data-vp-component="search-input"
+                          data-vp-variant="border"
+                          class="vp-search-input vp-search-input--border"
+                        >
+                          <input
+                            type="search"
+                            id="search-texbox"
+                            autocomplete="off"
+                            class="vp-search-input__input"
+                            style="margin-right: 0"
+                          />
+                          <div class="vp-search-input__icon" aria-hidden="true">
+                            <span
+                              class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"
+                            ></span>
+                          </div>
+                        </div>
+                      </form>
+                      <div
+                        id="search-suggestion-container"
+                        class="vp-search-suggestion-panel"
+                        data-vp-component="search-suggestion"
+                      ></div>
+                      <template id="search-suggestion-option-template">
+                        <div
+                          class="vp-search-suggestion-option-container vp-search-form__suggestion"
+                        >
+                          <a
+                            class="vp-search-suggestion-option vp-search-form__suggestion"
+                            href=""
+                          ></a>
+                        </div>
+                      </template>
                     </div>
-                </section>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div
+        class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide"
+      >
+        <div class="flex">
+          <div id="exp-navigation-wrapper" class="hidden lg:block">
+            <iframe src="toc.html?pageId=29360515" class="border-0"></iframe>
+          </div>
+
+          <div
+            class="vp-article__content-panel flex-auto grid-container full js-loading"
+            id="article-content"
+          >
+            <article role="article">
+              <header>
+                <nav aria-label="Breadcrumb" role="navigation">
+                  <div class="breadcrumbs-wrapper">
+                    <ol
+                      class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb"
+                    >
+                      <li class="js-hide-until-loaded">
+                        <a
+                          href="Tech Guide.31260673.html"
+                          rel="prev"
+                          target="_self"
+                          class="js-breadcrumbs-truncate"
+                          >Tech Guide</a
+                        >
+                      </li>
+                      <li class="breadcrumbs--active js-hide-until-loaded">
+                        <a
+                          href="7. Pre-Production.29360515.html"
+                          target="_self"
+                          aria-current="page"
+                          >7. Pre-Production</a
+                        >
+                      </li>
+                    </ol>
+                    <div class="breadcrumbs-wrapper__scroll-mask"></div>
+                  </div>
+                </nav>
+                <!-- CSS class article__heading is deprecated and will be removed in the future -->
+                <h1
+                  class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                  role="heading"
+                  data-scroll-heading-rank="1"
+                  data-scroll-original-heading-rank="1"
+                  data-scroll-relative-heading-rank="1"
+                  id="no-src_generated-id-ecaec817c8af2d6d4c3ffec628af366516c2dc0be118d029df5ab6c84da33b6f"
+                >
+                  <span class="js-hide-until-loaded">7. Pre-Production</span>
+                </h1>
+              </header>
+              <section class="page" id="content" role="main">
+                <div
+                  id="vp-js-desktop__navigation__skip-to-navigation-target"
+                ></div>
+                <div
+                  id="main-content"
+                  class="wiki-content article__content js-tocBot-content js-hide-until-loaded"
+                >
+                  <p>
+                    Pre-Production is the&nbsp; environment where Network
+                    Participants test their development to receive certification
+                    to move to ONDC Production Environment.
+                  </p>
+                  <p></p>
+                  <div
+                    class="confluence-information-macro confluence-information-macro-information"
+                  >
+                    <span
+                      class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"
+                    ></span>
+                    <div class="confluence-information-macro-body">
+                      <p><strong>ONDC Pre-Production Endpoints</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Registry Endpoint</span
+                    >
+                  </p>
+                  <div
+                    class="scroll-code scroll-highlighted-code-block"
+                    data-language="none"
+                    data-title-type="code"
+                    data-theme="defaultnew"
+                    style="counter-reset: scroll-code-numbering 0"
+                  >
+                    <div class="defaultnew content">
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//preprod.registry.ondc.org/ondc/lookup</code
+                        >
+                      </div>
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//preprod.registry.ondc.org/ondc/vlookup</code
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Gateway Endpoint</span
+                    >
+                  </p>
+                  <div
+                    class="scroll-code scroll-highlighted-code-block"
+                    data-language="none"
+                    data-title-type="code"
+                    data-theme="defaultnew"
+                    style="counter-reset: scroll-code-numbering 0"
+                  >
+                    <div class="defaultnew content">
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//preprod.gateway.ondc.org/search</code
+                        >
+                      </div>
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//preprod.gateway.ondc.org/on_search</code
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p><strong>Registry</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    The process for entry to pre-production registry can be
+                    found in the following document:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md"
+                        >developer-docs/Onboarding of Participants.md at main ·
+                        ONDCOfficial/developer-docs
+                      </a>
+                      <p>
+                        Developer documentation. Contribute to
+                        ONDC-Official/developer-docs development by creating an
+                        account on GitHub.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e3fcef; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e3fcef">
+                      <p><strong>API Integration</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    For Pre-Production, the network participants need to
+                    complete the end-to-end testing with ONDC reference
+                    applications and two different Network participants who are
+                    present in pre-production registry.
+                  </p>
+                  <p>
+                    Being a Buyer Network participant, kindly test the
+                    end-to-end transaction flow with
+                    <a
+                      shape="rect"
+                      href="https://ref-seller-app-preprod.ondc.org/"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://ref-seller-app-preprod.ondc.org/"
+                      data-scroll-link-local="false"
+                      >ONDC seller App</a
+                    >.
+                  </p>
+                  <p>
+                    Being a seller Network participant, kindly test the
+                    end-to-end transaction flow with
+                    <a
+                      shape="rect"
+                      href="https://buyer-app-preprod.ondc.org/login"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://buyer-app-preprod.ondc.org/login"
+                      data-scroll-link-local="false"
+                      >ONDC Reference Buyer App</a
+                    >.
+                  </p>
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #eae6ff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #eae6ff">
+                      <p><strong>Validation Checklist</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    The checklist provides the&nbsp; steps under technical,
+                    operational and regulatory compliance that must be completed
+                    to qualify to move into Production environment.
+                  </p>
+                  <p>It includes:</p>
+                  <ol start="1">
+                    <li><p>Technical Compliance</p></li>
+                    <li><p>Operational Compliance</p></li>
+                    <li><p>Regulatory Compliance</p></li>
+                  </ol>
+                  <p>&nbsp;</p>
+                  <ul
+                    class="inline-task-list"
+                    data-inline-tasks-content-id="29360515"
+                  >
+                    <li data-inline-task-id="7">
+                      <span class="placeholder-inline-tasks"
+                        >&nbsp;<span style="color: rgb(0, 184, 217)"
+                          >Technical Compliance</span
+                        >:</span
+                      >
+                    </li>
+                  </ul>
+                  <div class="table-wrap">
+                    <table
+                      data-layout="default"
+                      data-local-id="4241fa30-da88-4aba-be94-798107e56e3d"
+                      class="confluenceTable"
+                    >
+                      <colgroup span="1">
+                        <col span="1" />
+                        <col span="1" style="width: 511px" />
+                        <col span="1" style="width: 207px" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTh"
+                          >
+                            <p></p>
+                          </th>
+                          <th
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#ffebe6"
+                            class="confluenceTh"
+                            style="background-color: #ffebe6"
+                          >
+                            <p><strong>Compliance</strong></p>
+                          </th>
+                          <th
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#ffebe6"
+                            class="confluenceTh"
+                            style="background-color: #ffebe6"
+                          >
+                            <p><strong>Status</strong></p>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>1</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Implement latest version of the protocol.</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>2</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Log Verification of API Contracts</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>3</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Submission of App Scan Report*</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>4</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              Submission of security controls Infrastructure
+                              VAPT Report**
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>5</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Submission of APK for Buyer Apps</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p></p>
+                  <div class="expand-container">
+                    <p class="expand-control-text">
+                      Note: Refer to the following thresholds for App Scan and
+                      VAPT
+                    </p>
+                    <div class="expand-content">
+                      <p>
+                        *Severity 1 = 0 (NPs will be given 3 days to resolve)<br
+                          clear="none"
+                        />Severity 2 &lt;= 3 (NPs will be given 1 month to
+                        resolve)<br clear="none" />Severity 3 &lt;= 10
+                        <br clear="none" />**No incidents, vulnerabilities
+                        reported.
+                      </p>
+                    </div>
+                  </div>
+                  <p>&nbsp;</p>
+                  <ul
+                    class="inline-task-list"
+                    data-inline-tasks-content-id="29360515"
+                  >
+                    <li data-inline-task-id="8">
+                      <span class="placeholder-inline-tasks"
+                        ><strong
+                          ><span style="color: rgb(0, 184, 217)"
+                            >Log Validation:</span
+                          ></strong
+                        ></span
+                      >
+                    </li>
+                  </ul>
+                  <p>
+                    Kindly go through the below documents based on domain to
+                    understand the
+                    <span style="color: rgb(0, 184, 217)"
+                      >business test cases </span
+                    >required for Production go ahead. Network Participants need
+                    to test the logs based on the test cases using the log
+                    utility and share the final logs with ONDC tech team.
+                  </p>
+                  <h2
+                    id="id-7.Pre-Production-Retail"
+                    data-scroll-heading-rank="2"
+                    data-scroll-original-heading-rank="3"
+                    data-scroll-relative-heading-rank="2"
+                    class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2"
+                  >
+                    Retail
+                  </h2>
+                  <p>
+                    <a
+                      shape="rect"
+                      href="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing"
+                      data-scroll-link-local="false"
+                      >Test Case Scenarios v -1.1.0</a
+                    >
+                  </p>
+                  <h2
+                    id="id-7.Pre-Production-Logistics"
+                    data-scroll-heading-rank="2"
+                    data-scroll-original-heading-rank="3"
+                    data-scroll-relative-heading-rank="2"
+                    class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2"
+                  >
+                    Logistics
+                  </h2>
+                  <p>
+                    <a
+                      shape="rect"
+                      href="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://docs.google.com/document/d/1ttixilM-I6dutEdHL10uzqRFd8RcJlEO_9wBUijtdDc/edit?usp=sharing"
+                      data-scroll-link-local="false"
+                      >Test Case Scenarios v -1.1.0</a
+                    >
+                  </p>
+                  <h2
+                    id="id-7.Pre-Production-IGM"
+                    data-scroll-heading-rank="2"
+                    data-scroll-original-heading-rank="3"
+                    data-scroll-relative-heading-rank="2"
+                    class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2"
+                  >
+                    IGM
+                  </h2>
+                  <p>
+                    <a
+                      shape="rect"
+                      href="https://docs.google.com/document/d/1O-11TsUGLLvYgq1Fo-HNIkGIlOelBJH4/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://docs.google.com/document/d/1O-11TsUGLLvYgq1Fo-HNIkGIlOelBJH4/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                      data-scroll-link-local="false"
+                      >Test Case Scenarios IGM MVP.docx</a
+                    >
+                  </p>
+                  <h2
+                    id="id-7.Pre-Production-B2B"
+                    data-scroll-heading-rank="2"
+                    data-scroll-original-heading-rank="3"
+                    data-scroll-relative-heading-rank="2"
+                    class="scroll-original-h3 scroll-custom-section-heading scroll-document-section-heading scroll-h2 scroll-relative-h2"
+                  >
+                    B2B
+                  </h2>
+                  <p>
+                    <a
+                      shape="rect"
+                      href="https://docs.google.com/document/d/1ew9a4AzWgwFHcGqRmnv4XT_oRzHC4Qsl/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://docs.google.com/document/d/1ew9a4AzWgwFHcGqRmnv4XT_oRzHC4Qsl/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                      data-scroll-link-local="false"
+                      >Test Case Scenarios B2B MVP.docx</a
+                    >
+                  </p>
+                  <p></p>
+                  <p>
+                    Test the logs at your end using the
+                    <span style="color: rgb(0, 184, 217)">log utility</span>
+                    provided by ONDC.
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility"
+                        >reference-implementations/utilities/log-validation-utility
+                        at main · ONDCOfficial/reference-implementations
+                      </a>
+                      <p>
+                        ONDC reference apps. Contribute to
+                        ONDC-Official/reference-implementations development by
+                        creating an account on GitHub.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/log-validation-utility</a
+                  > -->
+                  <p></p>
+                  <p>Location to submit logs to validation:</p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://github.com/ONDC-Official/verification-logs"
+                        >GitHub - ONDC-Official/verification-logs: ONDC
+                        Pre-production issue & discussion board
+                      </a>
+                      <p>
+                        Please refer to below document for Policy Compliance and
+                        MVP Compliance. Final Compliance Checklist Note: ONDC
+                        Pre-production issue & discussion board. Contribute to
+                        ONDC-Official/verification-logs development by creating
+                        an account on GitHub.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/verification-logs"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/verification-logs"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/verification-logs</a
+                  > -->
+                  <p></p>
+                  <ul
+                    class="inline-task-list"
+                    data-inline-tasks-content-id="29360515"
+                  >
+                    <li data-inline-task-id="9">
+                      <span class="placeholder-inline-tasks"
+                        ><span style="color: rgb(0, 184, 217)"
+                          >Operational Compliance</span
+                        >:</span
+                      >
+                    </li>
+                  </ul>
+                  <div class="table-wrap">
+                    <table
+                      data-layout="wide"
+                      data-local-id="48bda301-fd4b-487c-951a-874923b25971"
+                      class="confluenceTable"
+                    >
+                      <colgroup span="1">
+                        <col span="1" />
+                        <col span="1" style="width: 340px" />
+                        <col span="1" style="width: 340px" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTh"
+                          >
+                            <p></p>
+                          </th>
+                          <th
+                            colspan="2"
+                            rowspan="1"
+                            data-highlight-colour="#4285f4"
+                            class="confluenceTh"
+                            style="background-color: #4285f4"
+                          >
+                            <p>
+                              <strong
+                                >Common for Buyer Node, Seller Node and
+                                Technology Service Providers</strong
+                              >
+                            </p>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>1</p>
+                          </td>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#cccccc"
+                            class="confluenceTd"
+                            style="background-color: #cccccc"
+                          >
+                            <p>Compliance (Process | Description)</p>
+                          </td>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#cccccc"
+                            class="confluenceTd"
+                            style="background-color: #cccccc"
+                          >
+                            <p>Status</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>2</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              <a
+                                shape="rect"
+                                href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p22"
+                                class="external-link scroll-external-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                data-scroll-link-type="default"
+                                data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p22"
+                                data-scroll-link-local="false"
+                                ><u>Customer Support Implementation (GRM)</u></a
+                              ><br clear="none" />Network Participants must set
+                              up a customer support team to deal with any
+                              returns, refunds, customer grievances etc. Refer
+                              to the document provided for details.
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>3</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              <a
+                                shape="rect"
+                                href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_55"
+                                class="external-link scroll-external-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                data-scroll-link-type="default"
+                                data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_55"
+                                data-scroll-link-local="false"
+                                ><u>Reconciliation and Payment Settlement</u></a
+                              ><br clear="none" />Network Participants must set
+                              up a Reconciliation and Payment Settlement
+                              Mechanism.<br clear="none" />In the initial phase,
+                              only buyer applications will be collecting
+                              payments and COD orders will not be entertained.
+                              As such, for Beta Launch, all Buyer applications
+                              must have a Reconciliation and Payment Settlement
+                              mechanism in place.<br clear="none" />Refer to the
+                              document provided for details.
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>4</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              <a
+                                shape="rect"
+                                href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p30"
+                                class="external-link scroll-external-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                data-scroll-link-type="default"
+                                data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.p30"
+                                data-scroll-link-local="false"
+                                ><u>Support to Delivery Agents</u></a
+                              ><br clear="none" />Network Participants (Seller
+                              Nodes and Logistics Nodes) must set up a process
+                              for supporting delivery agents to deliver orders
+                              in a prompt and safe manner.
+                              <br clear="none" />Refer to the document provided
+                              for details.
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>5</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              <a
+                                shape="rect"
+                                href="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_0"
+                                class="external-link scroll-external-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                data-scroll-link-type="default"
+                                data-scroll-link-target="https://docs.google.com/presentation/d/1_0zXrCVS5U2GdvPJS_92YyVxIZ6HEDHK/edit#slide=id.g15dead390ce_0_0"
+                                data-scroll-link-local="false"
+                                ><u
+                                  >Process for Monitoring of KPIs &amp; SLAs</u
+                                ></a
+                              ><br clear="none" />Certain service level
+                              commitments are expected from Network
+                              Participants. These are:<br
+                                clear="none"
+                              />Transaction drop rate (&lt;1%)
+                            </p>
+                            <p>Seller Cancellations (&lt;5%)</p>
+                            <p>Transaction drop rate (&lt;5%)</p>
+                            <p>Delivery within committed duration (&gt;95%)</p>
+                            <p>
+                              Participants are expected to track the
+                              aforementioned KPIs through an Order Status
+                              Dashboard and should ensure that the commitments
+                              are met. Daily monitoring of the dashboard will be
+                              conducted by ONDC to identify breach of SLAs for
+                              order execution/ customer support. Refer to the
+                              document provided for more details.
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>6</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              Self Certification of
+                              <a
+                                shape="rect"
+                                href="7. Pre-Production.29360515.html#"
+                                rel="nofollow"
+                                data-scroll-target-source-id="29360515"
+                                class="scroll-document-link"
+                                data-scroll-link-type="document"
+                                data-scroll-link-target="https://ondc-issue-logging-cohort1.atlassian.net/wiki/spaces/TTT/pages/29360515/7.+Pre-Production"
+                                data-scroll-link-target-source-id="29360515"
+                                ><u>MVP Use Cases Testing</u></a
+                              >
+                              (Last tab)
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p></p>
+                  <div class="table-wrap">
+                    <table
+                      data-layout="wide"
+                      data-local-id="266ee2a0-1e9d-4539-b016-22c7574e6b11"
+                      class="confluenceTable"
+                    >
+                      <colgroup span="1">
+                        <col span="1" />
+                        <col span="1" style="width: 756px" />
+                        <col span="1" style="width: 162px" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTh"
+                          >
+                            <p></p>
+                          </th>
+                          <th
+                            colspan="2"
+                            rowspan="1"
+                            data-highlight-colour="#4285f4"
+                            class="confluenceTh"
+                            style="background-color: #4285f4"
+                          >
+                            <p><strong>Seller Nodes ONLY</strong></p>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>1</p>
+                          </td>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#cccccc"
+                            class="confluenceTd"
+                            style="background-color: #cccccc"
+                          >
+                            <p>Compliance (Process | Description)</p>
+                          </td>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#cccccc"
+                            class="confluenceTd"
+                            style="background-color: #cccccc"
+                          >
+                            <p>Status</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>2</p>
+                          </td>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#ffffff"
+                            class="confluenceTd"
+                            style="background-color: #ffffff"
+                          >
+                            <p>
+                              Ensure Sellers / Stores Upload Back &amp; Side
+                              images of mandatory information
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>3</p>
+                          </td>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            data-highlight-colour="#ffffff"
+                            class="confluenceTd"
+                            style="background-color: #ffffff"
+                          >
+                            <p>
+                              Identification and training of sellers<br
+                                clear="none"
+                              />Seller nodes will be expected to identify their
+                              sellers and share their details with ONDC. Refer
+                              to the
+                              <a
+                                shape="rect"
+                                href="https://docs.google.com/spreadsheets/d/1VBJQODzCOo4PxcfQCMs714MeWKqSg-Hn/edit#gid=1475474318"
+                                class="external-link scroll-external-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                data-scroll-link-type="default"
+                                data-scroll-link-target="https://docs.google.com/spreadsheets/d/1VBJQODzCOo4PxcfQCMs714MeWKqSg-Hn/edit#gid=1475474318"
+                                data-scroll-link-local="false"
+                                ><u>format for sharing Seller Profiles</u></a
+                              >
+                              for sharing seller details with ONDC Team.
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            colspan="1"
+                            rowspan="1"
+                            class="numberingColumn confluenceTd"
+                          >
+                            <p>4</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>
+                              Confirming seller preparedness for successful
+                              handling of orders from ONDC<br
+                                clear="none"
+                              />Sellers must be prepared to take orders through
+                              ONDC. The following questionnaire can help
+                              determine seller preparedness:<a
+                                shape="rect"
+                                href="https://docs.google.com/document/d/14nnU6QKfJj4_xQC2opWP6AbKUQSZ1v_ALIApqP6R2a8/edit"
+                                class="external-link scroll-external-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                data-scroll-link-type="default"
+                                data-scroll-link-target="https://docs.google.com/document/d/14nnU6QKfJj4_xQC2opWP6AbKUQSZ1v_ALIApqP6R2a8/edit"
+                                data-scroll-link-local="false"
+                                ><u>Questionnaire for Sellers</u></a
+                              >
+                            </p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p></p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p></p>
+                  <ul
+                    class="inline-task-list"
+                    data-inline-tasks-content-id="29360515"
+                  >
+                    <li data-inline-task-id="10">
+                      <span class="placeholder-inline-tasks"
+                        ><span style="color: rgb(0, 184, 217)"
+                          >Regulatory Compliance</span
+                        ></span
+                      >
+                    </li>
+                  </ul>
+                  <p>
+                    Please refer to below document for Policy Compliance and MVP
+                    Compliance.
+                  </p>
+                  <p>
+                    <a
+                      shape="rect"
+                      href="https://docs.google.com/spreadsheets/d/1G7NFGmhIy5u6H3fqjl1b-Qt8Xz0SPL1Mk8EiVBeSe_o/edit?usp=sharing"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://docs.google.com/spreadsheets/d/1G7NFGmhIy5u6H3fqjl1b-Qt8Xz0SPL1Mk8EiVBeSe_o/edit?usp=sharing"
+                      data-scroll-link-local="false"
+                      >Final Compliance Checklist
+                    </a>
+                  </p>
+                  <p></p>
+                  <div class="expand-container">
+                    <p class="expand-control-text">Note:</p>
+                    <div class="expand-content">
+                      <ul>
+                        <li>
+                          <p>
+                            An NP must meet all the requirements provided in the
+                            document and obtain a go-ahead from ONDC Tech and
+                            Ops team for move to Production
+                          </p>
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <p>
+                            In addition to the compliances captured in the
+                            checklist an NP may also be required to go through
+                            functional testing with the ONDC team
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            The checklist provided above is evolving and ONDC
+                            may update the same as per any contingent
+                            requirement in the future
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <nav id="ht-post-nav">
+                    <a
+                      href="6. Staging Environment.29720683.html"
+                      class="ht-post-nav-prev"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>6. Staging Environment</span>
+                    </a>
+
+                    <a
+                      href="8. Production.30867487.html"
+                      class="ht-post-nav-next"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>8. Production</span>
+                    </a>
+                  </nav>
+                </div>
+              </section>
             </article>
-        </div>
+          </div>
 
-        <div class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print">
-            <div class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars">
-                <div class="js-tocBot">
-                                    </div>
+          <div
+            class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print"
+          >
+            <div
+              class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars"
+            >
+              <div class="js-tocBot"></div>
             </div>
+          </div>
         </div>
+      </div>
+    </main>
 
+    <div id="vp-js-mobile__navigation">
+      <div
+        tabindex="-1"
+        class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger"
+      >
+        <button
+          type="button"
+          class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center"
+          aria-label="navigation.open.label"
+        >
+          <div class="vp-mobile-navigation__button__icon relative">
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+          </div>
+        </button>
+      </div>
     </div>
-</div>
-</main>
 
-
-        <div id="vp-js-mobile__navigation">
-            <div tabindex="-1" class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger">
-                <button type="button" class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center" aria-label="navigation.open.label">
-                    <div class="vp-mobile-navigation__button__icon relative">
-                        <div class="absolute w-full"></div>
-                        <div class="absolute w-full"></div>
-                        <div class="absolute w-full"></div>
-                    </div>
-                </button>
-            </div>
-        </div>
-
-        <script src="js/app.js"></script>
-    </body>
+    <script src="js/app.js"></script>
+  </body>
 </html>
