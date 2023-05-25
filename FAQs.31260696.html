@@ -1,0 +1,281 @@
+<!doctype html>
+
+<html class="no-js" lang="en" data-vp-page-id="31260696">
+
+
+    
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="source-last-modified" content="2023-05-18T12:08Z">
+
+    <link rel="shortcut icon" href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="FAQs">
+
+
+    <link rel="stylesheet" href="css/app.css">
+
+
+
+<script id="search-worker" type="javascript/worker">
+    onmessage = function(event) {
+        // dispatch events to handling functions
+        var message = event.data;
+
+        if ((message.type === 'setup') && message.baseUrl) {
+            setup(message.baseUrl);
+        }
+
+        if (message.type === 'search-request') {
+            search(message.query);
+        }
+    }
+
+    var searchIndex;
+
+    function setup(baseUrl) {
+        importScripts(
+            baseUrl + 'js/lunr.js',
+            baseUrl + 'js/lunr-index.js',
+            baseUrl + 'js/lunr-data.js'
+        );
+        try {
+            // load lunr-extras if it exists, which contains language-specific files for languages other than english
+            importScripts(baseUrl + 'js/lunr-extras.js');
+        } catch (e) {}
+        searchIndex = lunr.Index.load(lunrIndex);
+    }
+
+    function search(query) {
+        var searchHits = searchIndex.search(query);
+        var results = searchHits.map(function (result) {
+            return lunrData.filter(function (d) {
+                return d.id === result.ref;
+            })[0]
+        });
+        postMessage({ type: 'search-results', results: results, query: query });
+    }
+</script>
+    <title>FAQs</title>
+
+</head>
+    <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
+    <body pageid="31260696">
+        <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
+
+
+
+<header class="header hc-header-background-color">
+    <nav class="header__navigation">
+        <div id="vp-js-mobile__header-bar">
+        </div>
+
+        <div class="off-canvas in-canvas-for-large position-right hc-header-background-color" id="site-navigation" data-off-canvas data-transition="overlap">
+            <div class="top-bar header__navigation--large hc-header-background-color hc-header-font-color" style="max-width: 100%">
+                <div class="top-bar-left">
+                    <ul class="menu hc-header-background-color list-none p-0 m-0">
+                        <li class="menu-text align-self-middle header__navigation--logo">
+                            <a href="Tech Guide.31260673.html">
+                                <img src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0" alt="Tech-Team-Tracker" title="Tech-Team-Tracker">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-bar-right no-print">
+                    <div class="header__navigation--large__menu hc-header-background-color">
+
+                            <ul class="menu">
+                                <li class="small-order-1 large-order-6">
+    
+
+    <div data-vp-id="search-bar-placeholder" data-vp-component="search-bar" class="vp-search-bar" aria-hidden="true">
+        <form action="/search.html" method="GET" class="vp-search-bar__input-container">
+            <div data-vp-component="search-input" data-vp-variant="border" class="vp-search-input vp-search-input--border">
+                <input type="search" id="search-texbox" autocomplete="off" class="vp-search-input__input" style="margin-right: 0;">
+                <div class="vp-search-input__icon" aria-hidden="true">
+                    <span class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"></span>
+                </div>
+            </div>
+        </form>
+        <div id="search-suggestion-container" class="vp-search-suggestion-panel" data-vp-component="search-suggestion"></div>
+        <template id="search-suggestion-option-template">
+            <div class="vp-search-suggestion-option-container vp-search-form__suggestion">
+                <a class="vp-search-suggestion-option vp-search-form__suggestion" href=""></a>
+            </div>
+        </template>
+    </div>
+
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<main>
+
+
+
+<div class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide">
+    <div class="flex">
+
+        <div id="exp-navigation-wrapper" class="hidden lg:block">
+            <iframe src="toc.html?pageId=31260696" class="border-0"></iframe>
+        </div>
+
+
+        <div class="vp-article__content-panel flex-auto grid-container full js-loading" id="article-content">
+            <article role="article">
+                <header>
+<nav aria-label="Breadcrumb" role="navigation">
+    <div class="breadcrumbs-wrapper">
+        <ol class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb">
+                <li class="js-hide-until-loaded">
+                    <a href="Tech Guide.31260673.html" rel="prev" target="_self" class="js-breadcrumbs-truncate">Tech Guide</a>
+                </li>
+            <li class="breadcrumbs--active js-hide-until-loaded">
+                <a href="FAQs.31260696.html" target="_self" aria-current="page">FAQs</a>
+            </li>
+        </ol>
+        <div class="breadcrumbs-wrapper__scroll-mask"></div>
+    </div>
+</nav>
+                    <!-- CSS class article__heading is deprecated and will be removed in the future -->
+                    <h1 class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading" role="heading" data-scroll-heading-rank="1" data-scroll-original-heading-rank="1" data-scroll-relative-heading-rank="1" id="no-src_generated-id-de8e0c5a50091ec9615cf379b2af7192f0033cb97bbf8835f9e8ac7eed8ac251"><span class="js-hide-until-loaded">FAQs</span></h1>
+                </header>
+                <section class="page" id="content" role="main">
+                    <div id="vp-js-desktop__navigation__skip-to-navigation-target"></div>
+                    <div id="main-content" class="wiki-content article__content js-tocBot-content js-hide-until-loaded">
+                        <ul><li><p>We are already integrated with logistic partners. Our sellers will use these logistic partners’ services to deliver the order to customers. Sellers can do the delivery by their local delivery boy as well in case of hyper-local delivery. Let us know if it will work for us as a TSP provider to go live in MVP.</p></li></ul><p style="margin-left: 60.0px;"><strong>Yes, Off-network logistics will also work temporarily but we would strongly advise you to please integrate with the On-network logistics</strong></p><hr><ul><li><p>What should be the response time of on_search, On_select, On_init, and other APIS after acknowledging the request from search, select and another API?</p></li></ul><p style="margin-left: 60.0px;"><strong>The protocol will define the message validity but the final say will be from the respective buyer apps to have a better user experience.&nbsp;</strong></p><hr><ul><li><p>If we acknowledge the request of search API and if we did not find any SKUs with the seller then what should we send to you in On_search API?&nbsp;&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Empty item array in the catalog</strong></p><hr><ul><li><p>Can sellers cancel the orders after sending the status: accepted in On_Confirm API?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Yes, but it should be done only when there is a valid reason and in exception scenarios. The seller app is responsible for maintaining the correct order and fulfilment state at their end.</strong></p><hr><ul><li><p>What will be the final status where the customer cancels the order in ondc?</p></li></ul><p style="margin-left: 60.0px;"><strong>Order state will be “Cancelled”</strong></p><hr><ul><li><p>We are not taking the replacement feature for MVP? Can we go live without a replacement feature?</p></li></ul><p style="margin-left: 60.0px;"><strong>Yes, you can but you should state the timeline by when it will be implemented. Further, return has to be enabled and replacement can be enabled through a return and a new order. Pls check the API contract</strong></p><hr><ul><li><p>What are the main statuses at the order level? we found the below status on GitHub. Are these final statuses for retail? can you please arrange the details of these statuses at the order level and item level?</p></li></ul><p style="margin-left: 60.0px;"><strong>Please check the API contract</strong></p><div class="table-wrap"><table data-layout="default" data-local-id="a7817629-2b97-41c1-9972-2c1497f2e55a" class="confluenceTable"><colgroup span="1"><col span="1" style="width: 210.0px;"><col span="1" style="width: 547.0px;"></colgroup><thead><tr><th colspan="1" rowspan="1" class="confluenceTh"><p><strong>Order. State (retail):</strong></p></th><th colspan="1" rowspan="1" class="confluenceTh"><p><strong>Fulfillment State Codes (Retail):</strong></p></th></tr></thead><tbody><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>Created</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Serviceable"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>Accepted</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Non-serviceable"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>In-progress</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Pending"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>Completed</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Packed"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>Cancelled</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Order-picked-up"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>&nbsp;</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Out-for-delivery"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>&nbsp;</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Order-delivered"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>&nbsp;</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"RTO-Initiated"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>&nbsp;</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"RTO-Delivered"</p></td></tr><tr><td colspan="1" rowspan="1" class="confluenceTd"><p>&nbsp;</p></td><td colspan="1" rowspan="1" class="confluenceTd"><p>"Cancelled"</p></td></tr></tbody></table></div><hr><ul><li><p>The case where sellers are using their courier partner to deliver the order to the customer, we need to share the breakup of delivery charges and packaging charges in the On_select API. Can we pass 0 value to these parameters since sellers’ delivery, packing, and other charges are included in the selling price?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>No need to include them.</strong></p><p style="margin-left: 60.0px;">Details for your reference:</p><div class="scroll-code scroll-highlighted-code-block" data-language="json" data-title-type="code" data-theme="defaultnew" style="  counter-reset: scroll-code-numbering 0;"><div class="defaultnew content">
+<div class="line"><code class="plain">{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">“</code><code class="color1">@ondc</code><code class="plain">/org/item_id”: “Fulfillment1”,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"title"</code><code class="plain">: </code><code class="string">"Delivery charges"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">“</code><code class="color1">@ondc</code><code class="plain">/org/title_type”: “ &nbsp; &nbsp; delivery”,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"price"</code><code class="plain">:</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"currency"</code><code class="plain">: </code><code class="string">"INR"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"value"</code><code class="plain">: </code><code class="string">"0"</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">“</code><code class="color1">@ondc</code><code class="plain">/org/item_id”: “Fulfillment1”,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"title"</code><code class="plain">: </code><code class="string">"Packing charges"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">“</code><code class="color1">@ondc</code><code class="plain">/org/title_type”: “packing”,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"price"</code><code class="plain">:</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"currency"</code><code class="plain">: </code><code class="string">"INR"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="string">"value"</code><code class="plain">: </code><code class="string">"0"</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+</div><p></p><hr><ul><li><p>What is the format of validity of message in context? How we will understand and calculate this Validity? What is the meaning of PT? should be send immediate NACK if validity expire? Will we get the the same search request again from buyer once validity expired.<br clear="none"></p></li></ul><p style="margin-left: 60.0px;"><strong>"ttl":"PT30S"&nbsp; (context ttl is in ISO8601 duration format. It is a universal standard format) For now, ONDC has defined this&nbsp;</strong></p><p style="margin-left: 60.0px;"><strong>validity and set it as 30 seconds (represented as PT30S) Yes, if a response is received after that ttl (validity), the participant can send a NACK.</strong></p><hr><ul><li><p>Once I will received one search request from any buyer app, I will send you ack immediately&nbsp; but I have multiple sellers then should I send you On_Search for every seller against one search? If yes then how would I can see in one payload only one contextin on_search?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>As discussed on meeting, as vinculum is participating as a TSP(adaptor) then against one search request vinculum has to send multiple(On_search) one callback for each seller.</strong></p><hr><ul><li><p>Difference&nbsp; between bpp/descriptor and bpp/providers? I am considering Vinculum is bpp/descriptor and Vinculum sellers as&nbsp; bpp/providers who fulfill orders. I am not considering the bpp/providers details for each location under one seller. Please confirm if we have the same understanding of this? Also Why is bpp/descriptor required if we are TSP and where it will be visible?</p></li></ul><p style="margin-left: 60.0px;"><strong>Understanding is correct.</strong></p><p style="margin-left: 60.0px;"><strong>But as TSP, Vinculum will be bringing in sellers as Network Participants who will be BPPs themselves, and the providers/ stores under those sellers will be providers</strong></p><hr><ul><li><p>What is the objective to share&nbsp; Provider enable and disable and timestamp details in on_search?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>At the time of catalogue share, the tag helps buyer apps identify whether the store is functional at the time or is closed/ disabled for the time.&nbsp;</strong></p><hr><ul><li><p>If we will share catalogue of active sellers only then will it impact any functionality?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Please elaborate on the search flow, at what time are you proposing sending the catalogue of the active sellers</strong></p><hr><ul><li><p>Label and timestamp is optional or mandatory?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Mandatory</strong></p><hr><ul><li><p>What is the importance of&nbsp; "ttl":"P1D" in on_search? What is the exact use case and expected functionality from TSP providers ?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Time Validity of the Catalogue ( Please refer the Comments ). Catalogue expires after that TTL, buyer apps who are caching catalogues provided by the sellers should be creating a fresh search request again once the ttl expires to get the latest catalogue details</strong></p><hr><ul><li><p>How do we identify which fields are mandatory and which are non-mandatory ?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>All attributes mentioned in the API contract are mandatory. Optional attributes are mentioned as optional in the footnotes</strong></p><hr><ul><li><p>What is "id" in Location in On_search API? What value should be passed in this? what is the use of this id in ONDC network or for buyer app?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Location.id is used to identify location level segregation for sellers. e.g. sellers may have different storefronts at different locations. Buyer apps may list these separately as individual “stores” or list a provider level listing with individual locations mentioned in the store page. The serviceability and category id is mentioned at the location level.</strong></p><hr><ul><li><p>We are not passing the gps and Radius tags values in On_searc API? Is there any blocker in On_search integration?&nbsp;&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>This is mandatory at a seller/ provider level. Given that Vinculum is coming as a TSP, the “platform” should have the functionality for sellers to provide their GPS and radius within which they will be servicing</strong></p><hr><ul><li><p>What is the intent to identify the city wise search in the search API ?</p></li></ul><p style="margin-left: 60.0px;"><strong>Catalogue pull at a city level identifying sellers servicing in the city.</strong></p><p style="margin-left: 60.0px;"><strong>For city wise search filter, city is provided in the context part of the search payload. The corresponding on_search response will consist of all the items/catalog provided by a seller NP in that particular city.</strong></p><hr><ul><li><p>If one location of the seller is able to serve self pickup and Delivery fulfillment then should i pass all three ids or only id =3.&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Yes, 3 needs to be sent</strong></p><div class="scroll-code scroll-highlighted-code-block" data-language="json" data-title-type="code" data-theme="defaultnew" style="  counter-reset: scroll-code-numbering 0;"><div class="defaultnew content">
+<div class="line"><code class="string">"bpp/fulfillments"</code><code class="plain">:</code></div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">"id"</code><code class="plain">:</code><code class="string">"1"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">"type"</code><code class="plain">:</code><code class="string">"Delivery"</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">"id"</code><code class="plain">:</code><code class="string">"2"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">"type"</code><code class="plain">:</code><code class="string">"Self-Pickup"</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">"id"</code><code class="plain">:</code><code class="string">"3"</code><code class="plain">,</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">"type"</code><code class="plain">:</code><code class="string">"Delivery and Self-Pickup"</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]</code></div>
+</div>
+</div><p>&nbsp;</p><hr><ul><li><p>Please define "id” tag value in item tag.&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>item.id is used to identify the items in the catalog</strong></p><hr><ul><li><p>What value i need to pass in the tag given below:</p></li></ul><p style="margin-left: 60.0px;"><strong>First sample image of the Product for product listing</strong></p><div class="scroll-code scroll-highlighted-code-block" data-title-type="code" data-theme="defaultnew" style="  counter-reset: scroll-code-numbering 0;"><div class="defaultnew content">
+<div class="line"><code class="string">"symbol"</code><code class="plain">:</code><code class="string">"https://abc.com/images/07.png"</code><code class="plain">,</code></div>
+</div>
+</div><hr><ul><li><p>What is price.maximum_value and price.value? please Maximum_value is MRP and value is selling price?&nbsp;&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>The understanding is correct</strong></p><hr><ul><li><p>What value should I pass in&nbsp; Qty.maximum.Count?</p></li></ul><p style="margin-left: 60.0px;"><strong>Qty.Available &lt;= Qty. Maximum</strong></p><hr><ul><li><p>What value should i pass to fulfillment_id":"1 ?&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>This attribute shows which type of fulfillment is available for that item. There are three fulfillments types that are provided as part of the on_search payload. One of them has to be provided here to identify the type of fulfillment for this item</strong></p><hr><ul><li><p>What is the meaning of this tag ? "recommended":true.&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>This is for the offers like 1. Buy x no of items, get y no of items (e.g. buy 2 get 3 for an item);</strong></p><hr><ul><li><p>Discounts (flat or % discount up to an amount);3. Freebie (get one or more items free if order value beyond certain amount);</p></li></ul><p style="margin-left: 30.0px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;But currently not enabled on network</strong><br clear="none"></p><hr><ul><li><p>Kindly explain Serviceability construct in detail.&nbsp;</p></li></ul><p style="margin-left: 60.0px;"><strong>Refer - </strong><a shape="rect" href="https://docs.google.com/document/d/1f4QbVstY5m-L_-Jut5jvbeiaBKLR1ttJL_am6GG2Fko/edit" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/document/d/1f4QbVstY5m-L_-Jut5jvbeiaBKLR1ttJL_am6GG2Fko/edit" data-scroll-link-local="false"><strong><u>Serviceability Construct for Providers</u></strong></a><strong>&nbsp;</strong></p><hr><ul><li><p>What exactly are bpp/descriptor and bpp/providers ? bpp/descriptor - seller details ?bpp/providers - location details ? </p></li></ul><p style="margin-left: 60.0px;"><strong>bpp/descriptor - seller app details</strong></p><p style="margin-left: 60.0px;"><strong>bpp/ provider - seller's details</strong></p><p style="margin-left: 60.0px;"><strong>bpp/provider/location - various locations of the seller</strong></p><hr>
+<nav id="ht-post-nav">
+        <a href="Support.30867500.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewbox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2" sketch:type="MSShapeGroup" transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Support</span>
+        </a>
+
+        <a href="Release Plan.31293464.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewbox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2" sketch:type="MSShapeGroup" transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Release Plan</span>
+        </a>
+</nav>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <div class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print">
+            <div class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars">
+                <div class="js-tocBot">
+                                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</main>
+
+
+        <div id="vp-js-mobile__navigation">
+            <div tabindex="-1" class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger">
+                <button type="button" class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center" aria-label="navigation.open.label">
+                    <div class="vp-mobile-navigation__button__icon relative">
+                        <div class="absolute w-full"></div>
+                        <div class="absolute w-full"></div>
+                        <div class="absolute w-full"></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>

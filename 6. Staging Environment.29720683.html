@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" data-vp-page-id="29720683">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="source-last-modified" content="2023-05-25T05:40Z" />
+
+    <link
+      rel="shortcut icon"
+      href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+    />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="6. Staging Environment" />
+
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script id="search-worker" type="javascript/worker">
+      onmessage = function(event) {
+          // dispatch events to handling functions
+          var message = event.data;
+
+          if ((message.type === 'setup') && message.baseUrl) {
+              setup(message.baseUrl);
+          }
+
+          if (message.type === 'search-request') {
+              search(message.query);
+          }
+      }
+
+      var searchIndex;
+
+      function setup(baseUrl) {
+          importScripts(
+              baseUrl + 'js/lunr.js',
+              baseUrl + 'js/lunr-index.js',
+              baseUrl + 'js/lunr-data.js'
+          );
+          try {
+              // load lunr-extras if it exists, which contains language-specific files for languages other than english
+              importScripts(baseUrl + 'js/lunr-extras.js');
+          } catch (e) {}
+          searchIndex = lunr.Index.load(lunrIndex);
+      }
+
+      function search(query) {
+          var searchHits = searchIndex.search(query);
+          var results = searchHits.map(function (result) {
+              return lunrData.filter(function (d) {
+                  return d.id === result.ref;
+              })[0]
+          });
+          postMessage({ type: 'search-results', results: results, query: query });
+      }
+    </script>
+    <title>6. Staging Environment</title>
+  </head>
+  <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
+  <body pageid="29720683">
+    <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
+
+    <header class="header hc-header-background-color">
+      <nav class="header__navigation">
+        <div id="vp-js-mobile__header-bar"></div>
+
+        <div
+          class="off-canvas in-canvas-for-large position-right hc-header-background-color"
+          id="site-navigation"
+          data-off-canvas
+          data-transition="overlap"
+        >
+          <div
+            class="top-bar header__navigation--large hc-header-background-color hc-header-font-color"
+            style="max-width: 100%"
+          >
+            <div class="top-bar-left">
+              <ul class="menu hc-header-background-color list-none p-0 m-0">
+                <li
+                  class="menu-text align-self-middle header__navigation--logo"
+                >
+                  <a href="Tech Guide.31260673.html">
+                    <img
+                      src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+                      alt="Tech-Team-Tracker"
+                      title="Tech-Team-Tracker"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="top-bar-right no-print">
+              <div
+                class="header__navigation--large__menu hc-header-background-color"
+              >
+                <ul class="menu">
+                  <li class="small-order-1 large-order-6">
+                    <div
+                      data-vp-id="search-bar-placeholder"
+                      data-vp-component="search-bar"
+                      class="vp-search-bar"
+                      aria-hidden="true"
+                    >
+                      <form
+                        action="/search.html"
+                        method="GET"
+                        class="vp-search-bar__input-container"
+                      >
+                        <div
+                          data-vp-component="search-input"
+                          data-vp-variant="border"
+                          class="vp-search-input vp-search-input--border"
+                        >
+                          <input
+                            type="search"
+                            id="search-texbox"
+                            autocomplete="off"
+                            class="vp-search-input__input"
+                            style="margin-right: 0"
+                          />
+                          <div class="vp-search-input__icon" aria-hidden="true">
+                            <span
+                              class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"
+                            ></span>
+                          </div>
+                        </div>
+                      </form>
+                      <div
+                        id="search-suggestion-container"
+                        class="vp-search-suggestion-panel"
+                        data-vp-component="search-suggestion"
+                      ></div>
+                      <template id="search-suggestion-option-template">
+                        <div
+                          class="vp-search-suggestion-option-container vp-search-form__suggestion"
+                        >
+                          <a
+                            class="vp-search-suggestion-option vp-search-form__suggestion"
+                            href=""
+                          ></a>
+                        </div>
+                      </template>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div
+        class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide"
+      >
+        <div class="flex">
+          <div id="exp-navigation-wrapper" class="hidden lg:block">
+            <iframe src="toc.html?pageId=29720683" class="border-0"></iframe>
+          </div>
+
+          <div
+            class="vp-article__content-panel flex-auto grid-container full js-loading"
+            id="article-content"
+          >
+            <article role="article">
+              <header>
+                <nav aria-label="Breadcrumb" role="navigation">
+                  <div class="breadcrumbs-wrapper">
+                    <ol
+                      class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb"
+                    >
+                      <li class="js-hide-until-loaded">
+                        <a
+                          href="Tech Guide.31260673.html"
+                          rel="prev"
+                          target="_self"
+                          class="js-breadcrumbs-truncate"
+                          >Tech Guide</a
+                        >
+                      </li>
+                      <li class="breadcrumbs--active js-hide-until-loaded">
+                        <a
+                          href="6. Staging Environment.29720683.html"
+                          target="_self"
+                          aria-current="page"
+                          >6. Staging Environment</a
+                        >
+                      </li>
+                    </ol>
+                    <div class="breadcrumbs-wrapper__scroll-mask"></div>
+                  </div>
+                </nav>
+                <!-- CSS class article__heading is deprecated and will be removed in the future -->
+                <h1
+                  class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                  role="heading"
+                  data-scroll-heading-rank="1"
+                  data-scroll-original-heading-rank="1"
+                  data-scroll-relative-heading-rank="1"
+                  id="no-src_generated-id-1d9d3b3079478702df43d0ec5c7101bb88c49fdb398db9b763dd8357c3000477"
+                >
+                  <span class="js-hide-until-loaded"
+                    >6. Staging Environment</span
+                  >
+                </h1>
+              </header>
+              <section class="page" id="content" role="main">
+                <div
+                  id="vp-js-desktop__navigation__skip-to-navigation-target"
+                ></div>
+                <div
+                  id="main-content"
+                  class="wiki-content article__content js-tocBot-content js-hide-until-loaded"
+                >
+                  <p>
+                    Staging, as the name defines is the first integration point
+                    to get you on-boarded to the network.
+                  </p>
+                  <p>
+                    ONDC Team has created a sandbox environment where all early
+                    stage network participants can test end-to-end transactions.
+                  </p>
+                  <p></p>
+                  <div
+                    class="confluence-information-macro confluence-information-macro-information"
+                  >
+                    <span
+                      class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"
+                    ></span>
+                    <div class="confluence-information-macro-body">
+                      <p><strong>ONDC Staging Endpoints</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Registry end point</span
+                    >
+                  </p>
+                  <div
+                    class="scroll-code scroll-highlighted-code-block"
+                    data-language="none"
+                    data-title-type="code"
+                    data-theme="defaultnew"
+                    style="counter-reset: scroll-code-numbering 0"
+                  >
+                    <div class="defaultnew content">
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//pilot-gateway-1.beckn.nsdl.co.in/lookup</code
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Gateway end point</span
+                    >
+                  </p>
+                  <div
+                    class="scroll-code scroll-highlighted-code-block"
+                    data-language="none"
+                    data-title-type="code"
+                    data-theme="defaultnew"
+                    style="counter-reset: scroll-code-numbering 0"
+                  >
+                    <div class="defaultnew content">
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//pilot-gateway-1.beckn.nsdl.co.in/search</code
+                        >
+                      </div>
+                      <div class="line">
+                        <code class="plain">https:</code
+                        ><code class="comments"
+                          >//pilot-gateway-1.beckn.nsdl.co.in/on_search</code
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p><strong>Registry</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    Below document defines the process to get registered to
+                    Staging Registry.
+                  </p>
+                  <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1HnOeTBWvYXO8kjAEHSrR6W8XICsPfKGIT6B_IhmvVV0/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1HnOeTBWvYXO8kjAEHSrR6W8XICsPfKGIT6B_IhmvVV0/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1HnOeTBWvYXO8kjAEHSrR6W8XICsPfKGIT6B_IhmvVV0/edit?usp=sharing</a
+                  >
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e3fcef; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e3fcef">
+                      <p><strong>API Integration</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    For staging environment, the network participants need to
+                    complete the end-to-end testing with ONDC reference
+                    applications.
+                  </p>
+                  <p>
+                    Being a Buyer Network participant, kindly test the
+                    end-to-end transaction flow with
+                    <a
+                      shape="rect"
+                      href="https://ref-seller-app-preprod.ondc.org/"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://ref-seller-app-preprod.ondc.org/"
+                      data-scroll-link-local="false"
+                      >https://ref-seller-app-preprod.ondc.org/</a
+                    >.
+                  </p>
+                  <p>
+                    Being a seller Network participant, kindly test the
+                    end-to-end transaction flow with
+                    <a
+                      shape="rect"
+                      href="https://buyer-app-preprod.ondc.org/login"
+                      data-card-appearance="inline"
+                      class="external-link scroll-external-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      data-scroll-link-type="default"
+                      data-scroll-link-target="https://buyer-app-preprod.ondc.org/login"
+                      data-scroll-link-local="false"
+                      >https://buyer-app-preprod.ondc.org/login</a
+                    >.
+                  </p>
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #eae6ff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #eae6ff">
+                      <p><strong>Validation Checklist</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    As part of go-ahead from Staging to Pre-Production, Network
+                    participants need to show demo of end-to-end transactions
+                    with ONDC reference application.
+                  </p>
+                  <p>To register for demo, kindly fill the below form.</p>
+                  <a
+                    shape="rect"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdz5-LLGX4m_pOQNFstoZQd5zhb68md_9zoX-dC8N8j2DABbA/viewform"
+                    data-layout="align-start"
+                    data-width="50.00"
+                    data-card-appearance="embed"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/forms/d/e/1FAIpQLSdz5-LLGX4m_pOQNFstoZQd5zhb68md_9zoX-dC8N8j2DABbA/viewform"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/forms/d/e/1FAIpQLSdz5-LLGX4m_pOQNFstoZQd5zhb68md_9zoX-dC8N8j2DABbA/viewform</a
+                  >
+                  <nav id="ht-post-nav">
+                    <a
+                      href="3. Understanding the APIs.30212102.html"
+                      class="ht-post-nav-prev"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>3. Understanding the APIs</span>
+                    </a>
+
+                    <a
+                      href="7. Pre-Production.29360515.html"
+                      class="ht-post-nav-next"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>7. Pre-Production</span>
+                    </a>
+                  </nav>
+                </div>
+              </section>
+            </article>
+          </div>
+
+          <div
+            class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print"
+          >
+            <div
+              class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars"
+            >
+              <div class="js-tocBot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="vp-js-mobile__navigation">
+      <div
+        tabindex="-1"
+        class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger"
+      >
+        <button
+          type="button"
+          class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center"
+          aria-label="navigation.open.label"
+        >
+          <div class="vp-mobile-navigation__button__icon relative">
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

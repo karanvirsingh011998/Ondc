@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" data-vp-page-id="29360446">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="source-last-modified" content="2023-05-25T05:39Z" />
+
+    <link
+      rel="shortcut icon"
+      href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+    />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="4. Developing the APIs" />
+
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script id="search-worker" type="javascript/worker">
+      onmessage = function(event) {
+          // dispatch events to handling functions
+          var message = event.data;
+
+          if ((message.type === 'setup') && message.baseUrl) {
+              setup(message.baseUrl);
+          }
+
+          if (message.type === 'search-request') {
+              search(message.query);
+          }
+      }
+
+      var searchIndex;
+
+      function setup(baseUrl) {
+          importScripts(
+              baseUrl + 'js/lunr.js',
+              baseUrl + 'js/lunr-index.js',
+              baseUrl + 'js/lunr-data.js'
+          );
+          try {
+              // load lunr-extras if it exists, which contains language-specific files for languages other than english
+              importScripts(baseUrl + 'js/lunr-extras.js');
+          } catch (e) {}
+          searchIndex = lunr.Index.load(lunrIndex);
+      }
+
+      function search(query) {
+          var searchHits = searchIndex.search(query);
+          var results = searchHits.map(function (result) {
+              return lunrData.filter(function (d) {
+                  return d.id === result.ref;
+              })[0]
+          });
+          postMessage({ type: 'search-results', results: results, query: query });
+      }
+    </script>
+    <title>4. Developing the APIs</title>
+  </head>
+  <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
+  <body pageid="29360446">
+    <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
+
+    <header class="header hc-header-background-color">
+      <nav class="header__navigation">
+        <div id="vp-js-mobile__header-bar"></div>
+
+        <div
+          class="off-canvas in-canvas-for-large position-right hc-header-background-color"
+          id="site-navigation"
+          data-off-canvas
+          data-transition="overlap"
+        >
+          <div
+            class="top-bar header__navigation--large hc-header-background-color hc-header-font-color"
+            style="max-width: 100%"
+          >
+            <div class="top-bar-left">
+              <ul class="menu hc-header-background-color list-none p-0 m-0">
+                <li
+                  class="menu-text align-self-middle header__navigation--logo"
+                >
+                  <a href="Tech Guide.31260673.html">
+                    <img
+                      src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+                      alt="Tech-Team-Tracker"
+                      title="Tech-Team-Tracker"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="top-bar-right no-print">
+              <div
+                class="header__navigation--large__menu hc-header-background-color"
+              >
+                <ul class="menu">
+                  <li class="small-order-1 large-order-6">
+                    <div
+                      data-vp-id="search-bar-placeholder"
+                      data-vp-component="search-bar"
+                      class="vp-search-bar"
+                      aria-hidden="true"
+                    >
+                      <form
+                        action="/search.html"
+                        method="GET"
+                        class="vp-search-bar__input-container"
+                      >
+                        <div
+                          data-vp-component="search-input"
+                          data-vp-variant="border"
+                          class="vp-search-input vp-search-input--border"
+                        >
+                          <input
+                            type="search"
+                            id="search-texbox"
+                            autocomplete="off"
+                            class="vp-search-input__input"
+                            style="margin-right: 0"
+                          />
+                          <div class="vp-search-input__icon" aria-hidden="true">
+                            <span
+                              class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"
+                            ></span>
+                          </div>
+                        </div>
+                      </form>
+                      <div
+                        id="search-suggestion-container"
+                        class="vp-search-suggestion-panel"
+                        data-vp-component="search-suggestion"
+                      ></div>
+                      <template id="search-suggestion-option-template">
+                        <div
+                          class="vp-search-suggestion-option-container vp-search-form__suggestion"
+                        >
+                          <a
+                            class="vp-search-suggestion-option vp-search-form__suggestion"
+                            href=""
+                          ></a>
+                        </div>
+                      </template>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div
+        class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide"
+      >
+        <div class="flex">
+          <div id="exp-navigation-wrapper" class="hidden lg:block">
+            <iframe src="toc.html?pageId=29360446" class="border-0"></iframe>
+          </div>
+
+          <div
+            class="vp-article__content-panel flex-auto grid-container full js-loading"
+            id="article-content"
+          >
+            <article role="article">
+              <header>
+                <nav aria-label="Breadcrumb" role="navigation">
+                  <div class="breadcrumbs-wrapper">
+                    <ol
+                      class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb"
+                    >
+                      <li class="js-hide-until-loaded">
+                        <a
+                          href="Tech Guide.31260673.html"
+                          rel="prev"
+                          target="_self"
+                          class="js-breadcrumbs-truncate"
+                          >Tech Guide</a
+                        >
+                      </li>
+                      <li class="breadcrumbs--active js-hide-until-loaded">
+                        <a
+                          href="4. Developing the APIs.29360446.html"
+                          target="_self"
+                          aria-current="page"
+                          >4. Developing the APIs</a
+                        >
+                      </li>
+                    </ol>
+                    <div class="breadcrumbs-wrapper__scroll-mask"></div>
+                  </div>
+                </nav>
+                <!-- CSS class article__heading is deprecated and will be removed in the future -->
+                <h1
+                  class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                  role="heading"
+                  data-scroll-heading-rank="1"
+                  data-scroll-original-heading-rank="1"
+                  data-scroll-relative-heading-rank="1"
+                  id="no-src_generated-id-8ebb1c59fe662ebbbb416b6272aaa8fcf608ca8c4eb0895af21223527e691ce3"
+                >
+                  <span class="js-hide-until-loaded"
+                    >4. Developing the APIs</span
+                  >
+                </h1>
+              </header>
+              <section class="page" id="content" role="main">
+                <div
+                  id="vp-js-desktop__navigation__skip-to-navigation-target"
+                ></div>
+                <div
+                  id="main-content"
+                  class="wiki-content article__content js-tocBot-content js-hide-until-loaded"
+                >
+                  <p>
+                    This guide will walk through the end to end requirements and
+                    flow to develop the APIs required to facilitate the
+                    transaction between consumer and provider.
+                  </p>
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #deebff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #deebff">
+                      <p><strong>ONDC Reference Applications</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    Do you need assistance in building the buyer or seller apps?
+                    Go through ONDC reference buyer and seller apps source code
+                    to help you get started.
+                  </p>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >ONDC reference Buyer APP:</span
+                    >
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://github.com/ONDC-Official/biap-client-node-js"
+                        >Github ONDC-Official/biap-client-node-js
+                      </a>
+                      <p>
+                        Contribute to ONDC-Official/biap-client-node-js
+                        development by creating an account on GitHub.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://github.com/ONDC-Official/ONDC-Mobile-Buyer-App-Private"
+                        >github.com/ONDC-Official/ONDC-Mobile-Buyer-App-Private
+                      </a>
+                      <p>
+                        private repo of ONDC-Mobile-Buyer-App. Contribute to
+                        ONDC-Official/ONDC-Mobile-BuyerApp development by
+                        creating an account on GitHub.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/biap-client-node-js"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/biap-client-node-js"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/biap-client-node-js</a
+                  > -->
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/ONDC-Mobile-Buyer-App-Private"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/ONDC-Mobile-Buyer-App-Private"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/ONDC-Mobile-Buyer-App-Private</a
+                  > -->
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >ONDC reference Seller APP:</span
+                    >
+                  </p>
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/seller-app-sdk"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/seller-app-sdk"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/seller-app-sdk</a
+                  > -->
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a href="https://github.com/ONDC-Official/seller-app-sdk"
+                        >github.com/ONDC-Official/seller-app-sdk
+                      </a>
+                      <p>
+                        Contribute to ONDC-Official/seller-app-sdk development
+                        by creating an account on GitHub
+                      </p>
+                    </div>
+                  </div>
+
+                  <p></p>
+                  <div class="confluence-information-macro scroll-panel-note">
+                    <div
+                      class="aui-icon aui-icon-small confluence-information-macro-icon"
+                    >
+                      <svg
+                        viewbox="0 0 24 24"
+                        focusable="false"
+                        role="presentation"
+                      >
+                        <path
+                          d="M8 4h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm1.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-5zm0 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-3z"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="confluence-information-macro-body">
+                      <p><strong>API Specifications</strong></p>
+                    </div>
+                  </div>
+                  <p></p>
+                  <p>
+                    ONDC API contracts map business requirements for various use
+                    case scenarios to a set of attribute keys in different APIs
+                    and ensures interoperability, between a buyer app &amp;
+                    seller app, as follows:
+                  </p>
+                  <ul>
+                    <li>
+                      <p>
+                        by defining the set of attribute keys that need to be
+                        exchanged to establish a handshake between the buyer app
+                        &amp; seller app;
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        clearly defining the single source of truth for each
+                        attribute key and thereby establishing mutability &amp;
+                        immutability of these keys on behalf of the participants
+                        at each end of the transaction;
+                      </p>
+                    </li>
+                  </ul>
+                  <p></p>
+                  <ul class="decision-list">
+                    <li><strong>Retail</strong></li>
+                  </ul>
+                  <p></p>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Retail Domains live in ONDC:</span
+                    >
+                  </p>
+                  <div class="table-wrap">
+                    <table
+                      data-layout="default"
+                      data-local-id="8209c0be-6006-4dae-b373-682de6176b4d"
+                      class="confluenceTable"
+                    >
+                      <tbody>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Grocery</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET10</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>F&amp;B</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET11</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Fashion</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET12</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>BPC</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET13</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Electronics</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET14</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Home &amp; Decor</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET15</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>Pharma</p>
+                          </td>
+                          <td colspan="1" rowspan="1" class="confluenceTd">
+                            <p>ONDC:RET16</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p></p>
+                  <p>
+                    ONDC APIs is built on top on Beckn protocol and closely
+                    follows the standards of Open API.
+                  </p>
+                  <p>
+                    Refer to the complete API specs and try the APIs in swagger
+                    hub:
+                  </p>
+
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-Retail/1.0.29"
+                        >Build, Collaborate & Integrate APIs | SwaggerHub
+                      </a>
+                      <p>
+                        Join thousands of developers who use SwaggerHub to build
+                        and design great APIs. Signup or login today.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-Retail/1.0.29"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-Retail/1.0.29"
+                    data-scroll-link-local="false"
+                    >https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-Retail/1.0.29</a
+                  > -->
+                  <p></p>
+                  <p>
+                    Please refer our
+                    <span style="color: rgb(0, 184, 217)">API contract</span> to
+                    understand the attributes usage and retail specific use
+                    cases implemented. These API contracts will help you
+                    understand the single source of truth for each attribute key
+                    and thereby establishing mutability &amp; immutability of
+                    these keys on behalf of the participants at each end of the
+                    transaction.
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://drive.google.com/file/d/1Z0eT1PZ8_tthEyxli8bLs-B9oCYAZIS0/view?usp=sharing"
+                      >
+                        ONDC - API Contract for Retail (v1.1.0)_Final.pdf
+                      </a>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://drive.google.com/file/d/1Z0eT1PZ8_tthEyxli8bLs-B9oCYAZIS0/view?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://drive.google.com/file/d/1Z0eT1PZ8_tthEyxli8bLs-B9oCYAZIS0/view?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://drive.google.com/file/d/1Z0eT1PZ8_tthEyxli8bLs-B9oCYAZIS0/view?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Retail transaction contract</span
+                    >
+                    between Retail Buyer and Seller:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/12oMC4A05jT5rjCbY-M7j4T2oekr9bqcvSOpTI0jFEgE/edit?usp=sharing"
+                      >
+                        ONDC API Contract between Retail Buyer and Seller
+                        (v1.0.0)
+                      </a>
+                      <p>
+                        THIS API CONTRACT IS DEPRECATED. UPGRADED VERSION IS
+                        HERE Revision History Version Date Changes 1.1.0 11th
+                        Dec 2022 Adding RTO flow as per this spec; 1.0.25 31st
+                        Jan 2023 Added clarification for total price for quote &
+                        quote breakup line items in /on_select,…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/12oMC4A05jT5rjCbY-M7j4T2oekr9bqcvSOpTI0jFEgE/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/12oMC4A05jT5rjCbY-M7j4T2oekr9bqcvSOpTI0jFEgE/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/12oMC4A05jT5rjCbY-M7j4T2oekr9bqcvSOpTI0jFEgE/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <p>
+                    We have a working document with
+                    <span style="color: rgb(0, 184, 217)"
+                      >new version of retail coming in</span
+                    >. It will be released based on the release plan. The new
+                    release will include Variants, Add-ons, cross-categories,
+                    offers and much more.
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1LpRon1jTS__Aeg2aDzVpxdB-wB9H8vGbGnrlMLVdCpY/edit?usp=sharing"
+                      >
+                        Retail (feature doc) - v1.2
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 0.2 30th Apr 2023
+                        Resequenced as per the release plan; Added catalog
+                        incremental pull, customizations (variants, add-ons);
+                        0.1 9th Apr 2023 Initial draft - use cases & specs for:
+                        Catalog update domain & subdomain nomenclature,…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1LpRon1jTS__Aeg2aDzVpxdB-wB9H8vGbGnrlMLVdCpY/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1LpRon1jTS__Aeg2aDzVpxdB-wB9H8vGbGnrlMLVdCpY/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1LpRon1jTS__Aeg2aDzVpxdB-wB9H8vGbGnrlMLVdCpY/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <ul class="decision-list">
+                    <li><strong>Logistics</strong></li>
+                  </ul>
+                  <p></p>
+                  <p>
+                    Refer to the logistics
+                    <span style="color: rgb(0, 184, 217)">API contract</span> to
+                    understand the attributes usage and retail specific use
+                    cases implemented. These API contracts will help you
+                    understand the single source of truth for each attribute key
+                    and thereby establishing mutability &amp; immutability of
+                    these keys on behalf of the participants at each end of the
+                    transaction.
+                  </p>
+
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://drive.google.com/file/d/1IebvnM4ZyGXllsQTFTVRAvUTlkmARnM_/view?usp=sharing"
+                      >
+                        ONDC - API Contract for Logistics (v1.1.0)_Final.pdf
+                      </a>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://drive.google.com/file/d/1IebvnM4ZyGXllsQTFTVRAvUTlkmARnM_/view?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://drive.google.com/file/d/1IebvnM4ZyGXllsQTFTVRAvUTlkmARnM_/view?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://drive.google.com/file/d/1IebvnM4ZyGXllsQTFTVRAvUTlkmARnM_/view?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Logistics transaction contract</span
+                    >
+                    between Logistics Provider and Consumer:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1LiKGK3AKwzx5GWAc5g942QKB-TzDn0gGMsvXNJgIrmk/edit?usp=sharing"
+                      >
+                        ONDC API Contract between Logistics Buyer & Seller
+                        (v1.0.0)
+                      </a>
+                      <p>
+                        THIS API CONTRACT IS DEPRECATED. UPGRADED VERSION IS
+                        HERE Revision History Version Date Changes 1.1.0 17th
+                        Dec 2022 Adding RTO quote to /on_search & linking to
+                        forward shipment quote 11th Dec 2022 Adding RTO flow as
+                        per this spec 1.0.11 31st Jan 20…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1LiKGK3AKwzx5GWAc5g942QKB-TzDn0gGMsvXNJgIrmk/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1LiKGK3AKwzx5GWAc5g942QKB-TzDn0gGMsvXNJgIrmk/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1LiKGK3AKwzx5GWAc5g942QKB-TzDn0gGMsvXNJgIrmk/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <ul class="decision-list">
+                    <li><strong>B2B</strong></li>
+                  </ul>
+                  <p>
+                    Please refer our
+                    <span style="color: rgb(0, 184, 217)">API contract</span> to
+                    understand the attributes usage and retail specific use
+                    cases implemented. These API contracts will help you
+                    understand the single source of truth for each attribute key
+                    and thereby establishing mutability &amp; immutability of
+                    these keys on behalf of the participants at each end of the
+                    transaction.
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1Zg684Akm8cw9SIVpBPkflogoh6Sh-SN1JtAsWjugzbw/edit?usp=sharing"
+                      >
+                        ONDC API Contract Extension - Grocery (B2B)
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 0.7 5th May 2023
+                        Added format for item.descriptor.code 0.6 26th Apr 2023
+                        Changed Context.version to Context.core_version (interim
+                        change) 0.5 6th Apr 2023 Reverted codification for
+                        Context.domain, version -…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1Zg684Akm8cw9SIVpBPkflogoh6Sh-SN1JtAsWjugzbw/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1Zg684Akm8cw9SIVpBPkflogoh6Sh-SN1JtAsWjugzbw/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1Zg684Akm8cw9SIVpBPkflogoh6Sh-SN1JtAsWjugzbw/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="confluence-information-macro confluence-information-macro-tip"
+                  >
+                    <span
+                      class="aui-icon aui-icon-small aui-iconfont-approve confluence-information-macro-icon"
+                    ></span>
+                    <div class="confluence-information-macro-body">
+                      <p><strong>IGM</strong></p>
+                    </div>
+                  </div>
+                  <p></p>
+                  <p>
+                    The
+                    <span style="color: rgb(0, 184, 217)"
+                      >Issue &amp; Grievance Management (IGM)</span
+                    >
+                    for ONDC is a mechanism via which issues between users of
+                    the network are resolved. The IGM flow has been developed
+                    based on the Issue &amp; Grievance Management framework
+                    which acts as a facilitator to resolve issues, grievances
+                    and disputes between a Complainant and Respondent in a
+                    manner that ensures transparency, fairness and data security
+                    to the parties. The framework is built on the interactions
+                    on a tripartite Network Participants (NPs) contract for a
+                    unique transaction including logistics services by Logistics
+                    Service Provider (LSP)&nbsp; that has been procured
+                    on-network. This implies that a complainant shall be raising
+                    an issue for a particular transaction on the network which
+                    may involve buyer app, seller app, logistics service
+                    provider app or any other participants as may be notified by
+                    ONDC as identified entities for a given transaction.
+                  </p>
+                  <span
+                    class="confluence-embedded-file-wrapper image-center-wrapper"
+                    ><img
+                      class="confluence-embedded-image image-center scroll-document-image"
+                      src="_scroll_external/attachments/screenshot-2023-05-18-at-12-14-57-pm-bbd1e498a4bf9127539619870886c316e72d1510e730fe1a55a1b00e435d81a0.png"
+                  /></span>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Try the APIs on swagger hub</span
+                    >:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-IGM/1.0.0"
+                      >
+                        Build, Collaborate & Integrate APIs | SwaggerHub
+                      </a>
+                      <p>
+                        Join thousands of developers who use SwaggerHub to build
+                        and design great APIs. Signup or login today
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-IGM/1.0.0"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-IGM/1.0.0"
+                    data-scroll-link-local="false"
+                    >https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-IGM/1.0.0</a
+                  > -->
+                  <p></p>
+                  <p>
+                    Refer to
+                    <span style="color: rgb(0, 184, 217)"
+                      >IGM API contract</span
+                    >
+                    here:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/135OCfsi5jQ7wh4H_LOoMxb0T0ZrWDYy4LTBvpYS6k_w/edit?usp=sharing"
+                      >
+                        ONDC Process Flow for Issue and Grievance Management
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 1.0.0 28-Apr-2023
+                        issue.issue_action changed to issue_actions
+                        source.issue_source_type changed to type odr.about_info
+                        changed to long_desc odr.short_desc added
+                        rating.rating_value changed to value
+                        issue_status.message.id change…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/135OCfsi5jQ7wh4H_LOoMxb0T0ZrWDYy4LTBvpYS6k_w/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/135OCfsi5jQ7wh4H_LOoMxb0T0ZrWDYy4LTBvpYS6k_w/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/135OCfsi5jQ7wh4H_LOoMxb0T0ZrWDYy4LTBvpYS6k_w/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="confluence-information-macro confluence-information-macro-tip"
+                  >
+                    <span
+                      class="aui-icon aui-icon-small aui-iconfont-approve confluence-information-macro-icon"
+                    ></span>
+                    <div class="confluence-information-macro-body">
+                      <p>
+                        <strong>RSP (Reconciliation and Settlement)</strong>
+                      </p>
+                    </div>
+                  </div>
+                  <p></p>
+                  <p>
+                    The objective is to propose a
+                    <span style="color: rgb(0, 184, 217)"
+                      >Reconciliation and Settlement</span
+                    ><strong> </strong>framework for Network Participants (NP),
+                    such as Buyer Platforms, Seller Platforms, Logistics
+                    Platform etc, on ONDC. The construct defined will provide a
+                    framework for participants to settle funds against
+                    transactions to respective parties and create an audit trail
+                    of transactions. Following are the enumerated design
+                    principles for reconciliation and settlement framework:
+                  </p>
+                  <ol start="1">
+                    <li>
+                      <p>
+                        Enable seamless settlement of funds collected by
+                        participants
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Non-repudiable information dissemination all through
+                        network entities
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Maintaining Audit trail to ensure evidence
+                        security&nbsp;
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Defining standards of message communication for
+                        transparency, efficiency and machine readability of
+                        Information
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Building trust through safeguarding fund flow for a
+                        transaction through well defined triggers for money
+                        withdrawal from Nodal Like account
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Ensuring non-repudiability through digital signatures
+                        and payload authentication
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Seamless integration using protocol with all
+                        stakeholders including settlement agency, reconciliation
+                        service providers and participants
+                      </p>
+                    </li>
+                  </ol>
+                  <span
+                    class="confluence-embedded-file-wrapper image-center-wrapper"
+                    ><img
+                      class="confluence-embedded-image image-center scroll-document-image"
+                      src="_scroll_external/attachments/screenshot-2023-05-18-at-12-19-19-pm-0f5ed4f903cb89221fdb4974db208c8f254edc2038439493c8fb1f33916177d1.png"
+                  /></span>
+                  <p>
+                    <span style="color: rgb(0, 184, 217)"
+                      >Try the APIs on swagger hub</span
+                    >:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-RSP/0.1.0-draft#/"
+                      >
+                        Build, Collaborate & Integrate APIs | SwaggerHub
+                      </a>
+                      <p>
+                        Join thousands of developers who use SwaggerHub to build
+                        and design great APIs. Signup or login today.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-RSP/0.1.0-draft#/"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-RSP/0.1.0-draft#/"
+                    data-scroll-link-local="false"
+                    >https://app.swaggerhub.com/apis/ONDC/ONDC-Protocol-RSP/0.1.0-draft#/</a
+                  > -->
+                  <p></p>
+                  <p>
+                    Refer to
+                    <span style="color: rgb(0, 184, 217)"
+                      >RSP API contract</span
+                    >
+                    here:
+                  </p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1ubUPAWpbbUJ4vG2h5TQ74srZBjYjrO0P/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                      >
+                        ONDC API Contract for Reconciliation and Settlement.docx
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 0.5.3 14-Apr-2023
+                        Updated domain code to "NTS10" 0.5.2 28-Mar-2023 Added
+                        error codes for API communications in section 5.m 0.5.1
+                        20-Feb2023 Added clarity on /lookup API usage for
+                        getting keys of NPs from registry 0.5 21-Dec-20…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1ubUPAWpbbUJ4vG2h5TQ74srZBjYjrO0P/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1ubUPAWpbbUJ4vG2h5TQ74srZBjYjrO0P/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1ubUPAWpbbUJ4vG2h5TQ74srZBjYjrO0P/edit?usp=sharing&amp;ouid=103244249656832991961&amp;rtpof=true&amp;sd=true</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #ffebe6; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #ffebe6">
+                      <p><strong>Serviceability</strong></p>
+                    </div>
+                  </div>
+                  <p>
+                    The serviceability construct will allow a buyer app to
+                    <strong
+                      >display catalogs, for only those stores, that can fulfill
+                      orders for a buyer, at a specific time, at their
+                      location.</strong
+                    >
+                  </p>
+                  <p>Please go through the serviceability construct here</p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1f4QbVstY5m-L_-Jut5jvbeiaBKLR1ttJL_am6GG2Fko/edit?usp=sharing"
+                      >
+                        Serviceability Construct for Providers
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 0.7 27th Jan 2023
+                        Changed serviceability construct definition for
+                        providers to use category_id from enhanced taxonomy
+                        here; 0.6 2nd Jan 2023 Changed serviceability construct
+                        definition for providers to include L4 categories; 0.5
+                        20th De…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1f4QbVstY5m-L_-Jut5jvbeiaBKLR1ttJL_am6GG2Fko/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1f4QbVstY5m-L_-Jut5jvbeiaBKLR1ttJL_am6GG2Fko/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1f4QbVstY5m-L_-Jut5jvbeiaBKLR1ttJL_am6GG2Fko/edit?usp=sharing</a
+                  > -->
+                  <p>City-State codes are defined here:</p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/spreadsheets/d/1BtABwe4CXgN_sHIvDH51dJeYzRWdAhedYtzx10apOTs/edit?usp=sharing"
+                      >
+                        ONDC-city-state-codes
+                      </a>
+                      <p>
+                        City codes City,Code Delhi,std:011 Ghaziabad,std:0120
+                        Meerut,std:0121 Gurgaon,std:0124 Faridabad,std:0129
+                        Saharanpur,std:0132 Haridwar,std:01334 Bijnor,std:01342
+                        Dehradun,std:0135 Kotdwara,std:01382 Jaipur,std:0141
+                        Motihari,std:01421 Bansur,std:0146…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/spreadsheets/d/1BtABwe4CXgN_sHIvDH51dJeYzRWdAhedYtzx10apOTs/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/spreadsheets/d/1BtABwe4CXgN_sHIvDH51dJeYzRWdAhedYtzx10apOTs/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/spreadsheets/d/1BtABwe4CXgN_sHIvDH51dJeYzRWdAhedYtzx10apOTs/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p>
+                        <strong
+                          >Order Cancellation, Returns &amp;
+                          Replacements</strong
+                        >
+                      </p>
+                    </div>
+                  </div>
+                  <p>
+                    The objective is to propose process flows for
+                    <span style="color: rgb(0, 184, 217)"
+                      >Cancellation, Return &amp; Replacement</span
+                    >. Cancellation, Return &amp; Replacement can be processed
+                    by Buyer &amp; Seller Apps, using existing protocol APIs.
+                    The detailed process flows and sequence diagrams are defined
+                    below.
+                  </p>
+                  <p>
+                    This note proposes detailed process flows for the following:
+                  </p>
+                  <ul>
+                    <li>
+                      <p>
+                        <strong
+                          ><span style="color: rgb(0, 184, 217)"
+                            >Cancellation</span
+                          >
+                          - </strong
+                        >for the full order or for part of an order, i.e. some
+                        of the items in an order;
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <strong
+                          ><span style="color: rgb(0, 184, 217)"
+                            >Return</span
+                          ></strong
+                        >
+                        - for one or more items in an order. A part return will
+                        be defined as return of one or more items in an order
+                        but not return of all items in the order. A full return
+                        will be defined as the return of all items in the order.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <strong
+                          ><span style="color: rgb(0, 184, 217)"
+                            >Replacement</span
+                          ></strong
+                        ><span style="color: rgb(0, 184, 217)"> </span>- for one
+                        or more items in an order. A part replacement will be
+                        defined as replacement of one or more items in an order
+                        but not replacement of all items in the order. A full
+                        replacement will be defined as the replacement of all
+                        items in the order. Note that a replacement can also be
+                        handled by part or full return of the order and creating
+                        a new order with the items that are being partly or
+                        fully replaced.
+                      </p>
+                    </li>
+                  </ul>
+                  <p></p>
+                  <p>Please go through the complete flow here:</p>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1M-lZSduYMFKIk1V6d8QLt-j-16-rVzYVdPn0pmbkclk/edit?usp=sharing"
+                      >
+                        Order Cancellation, Returns & Replacements Process Flow
+                        - v0.9
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 0.9 12th Mar 2023
+                        Added cancellation reason code "008" - order not ready
+                        for pickup; 16th Feb 2023 Added cancellation reason code
+                        "019" - pickup pincode not serviceable; Added "Who can
+                        use code" to cancellation reason codes; 6t…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1M-lZSduYMFKIk1V6d8QLt-j-16-rVzYVdPn0pmbkclk/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1M-lZSduYMFKIk1V6d8QLt-j-16-rVzYVdPn0pmbkclk/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1M-lZSduYMFKIk1V6d8QLt-j-16-rVzYVdPn0pmbkclk/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p><strong>Catalogue Mandatory Requirements</strong></p>
+                    </div>
+                  </div>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/spreadsheets/d/1BNPOgcJzKglZzj1bpx-KkjvWBpH-R50AXbdC1AKJm1g/edit?usp=sharing"
+                      >
+                        Catalog Mandatory Requirements
+                      </a>
+                      <p>
+                        Catalog Catalog Attributes,Definition,Statutory
+                        Requirements,Text or Image (for Statutory Reqs),Least
+                        Common Denominator (Statutory Reqs),Mandatory
+                        bpp/descriptor,name,N/A,N/A,N/A,Yes (for Inventory
+                        Seller) symbol,logo or image short_desc…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/spreadsheets/d/1BNPOgcJzKglZzj1bpx-KkjvWBpH-R50AXbdC1AKJm1g/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/spreadsheets/d/1BNPOgcJzKglZzj1bpx-KkjvWBpH-R50AXbdC1AKJm1g/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/spreadsheets/d/1BNPOgcJzKglZzj1bpx-KkjvWBpH-R50AXbdC1AKJm1g/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p><strong>Error Codes</strong></p>
+                    </div>
+                  </div>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://github.com/ONDC-Official/developer-docs/blob/main/protocol-network-extension/error-codes.md"
+                      >
+                        developer-docs/error-codes.md at main ·
+                        ONDC-Official/developer-docs
+                      </a>
+                      <p>
+                        Developer documentation. Contribute to
+                        ONDC-Official/developer-docs development by creating an
+                        account on GitHub.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://github.com/ONDC-Official/developer-docs/blob/main/protocol-network-extension/error-codes.md"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://github.com/ONDC-Official/developer-docs/blob/main/protocol-network-extension/error-codes.md"
+                    data-scroll-link-local="false"
+                    >https://github.com/ONDC-Official/developer-docs/blob/main/protocol-network-extension/error-codes.md</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p><strong>Payment and Settlement</strong></p>
+                    </div>
+                  </div>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1iqLdayk488ekEzKrEs-yn6gVrevbxBkILBe5j4oIxMY/edit?usp=sharing"
+                      >
+                        Payment and Settlement Protocol - v0.9
+                      </a>
+                      <p>
+                        Revision History Version Date Changes 0.9 18th Jan 2023
+                        Updated buyer finder fee (BFF) calculations in 4a; 26th
+                        Nov 2022 Changed definition of buyer app finder fee as %
+                        of total order value or fixed amount per order; Added
+                        label = “Invoice” for Order.documents 0.8 27th Aug 2...
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1iqLdayk488ekEzKrEs-yn6gVrevbxBkILBe5j4oIxMY/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1iqLdayk488ekEzKrEs-yn6gVrevbxBkILBe5j4oIxMY/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1iqLdayk488ekEzKrEs-yn6gVrevbxBkILBe5j4oIxMY/edit?usp=sharing</a
+                  > -->
+                  <p></p>
+                  <div
+                    class="panel"
+                    style="background-color: #e6fcff; border-width: 1px"
+                  >
+                    <div class="panelContent" style="background-color: #e6fcff">
+                      <p><strong>Checklist for Sellers</strong></p>
+                    </div>
+                  </div>
+                  <div class="cellnormal" data-type="normal">
+                    <div class="introductionInnerCell">
+                      <a
+                        href="https://docs.google.com/document/d/1m2V3GR6UIjJK65u4JW1r35cihy7lFmuBe8_cv66mVU8/edit?usp=sharing"
+                      >
+                        Technical Note - ONDC Checklist for Sellers (DRAFT)
+                      </a>
+                      <p>
+                        ONDC- Checklist for Sellers Overview Any participant on
+                        ONDC becomes a node in the network. A retailer could be
+                        onboarded to ONDC as a seller app or as a provider for
+                        an aggregator / software vendor, that becomes the seller
+                        app on ONDC. A seller app, on ONDC,…
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <a
+                    shape="rect"
+                    href="https://docs.google.com/document/d/1m2V3GR6UIjJK65u4JW1r35cihy7lFmuBe8_cv66mVU8/edit?usp=sharing"
+                    data-card-appearance="block"
+                    class="external-link scroll-external-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-scroll-link-type="default"
+                    data-scroll-link-target="https://docs.google.com/document/d/1m2V3GR6UIjJK65u4JW1r35cihy7lFmuBe8_cv66mVU8/edit?usp=sharing"
+                    data-scroll-link-local="false"
+                    >https://docs.google.com/document/d/1m2V3GR6UIjJK65u4JW1r35cihy7lFmuBe8_cv66mVU8/edit?usp=sharing</a
+                  > -->
+                  <nav id="ht-post-nav">
+                    <a
+                      href="2. On-boarding.30244871.html"
+                      class="ht-post-nav-prev"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>2. On-boarding</span>
+                    </a>
+
+                    <a
+                      href="3. Understanding the APIs.30212102.html"
+                      class="ht-post-nav-next"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>3. Understanding the APIs</span>
+                    </a>
+                  </nav>
+                </div>
+              </section>
+            </article>
+          </div>
+
+          <div
+            class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print"
+          >
+            <div
+              class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars"
+            >
+              <div class="js-tocBot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="vp-js-mobile__navigation">
+      <div
+        tabindex="-1"
+        class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger"
+      >
+        <button
+          type="button"
+          class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center"
+          aria-label="navigation.open.label"
+        >
+          <div class="vp-mobile-navigation__button__icon relative">
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

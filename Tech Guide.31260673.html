@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" data-vp-page-id="31260673">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="source-last-modified" content="2023-05-18T12:27Z" />
+
+    <link
+      rel="shortcut icon"
+      href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+    />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Tech Guide" />
+
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script id="search-worker" type="javascript/worker">
+      onmessage = function(event) {
+          // dispatch events to handling functions
+          var message = event.data;
+
+          if ((message.type === 'setup') && message.baseUrl) {
+              setup(message.baseUrl);
+          }
+
+          if (message.type === 'search-request') {
+              search(message.query);
+          }
+      }
+
+      var searchIndex;
+
+      function setup(baseUrl) {
+          importScripts(
+              baseUrl + 'js/lunr.js',
+              baseUrl + 'js/lunr-index.js',
+              baseUrl + 'js/lunr-data.js'
+          );
+          try {
+              // load lunr-extras if it exists, which contains language-specific files for languages other than english
+              importScripts(baseUrl + 'js/lunr-extras.js');
+          } catch (e) {}
+          searchIndex = lunr.Index.load(lunrIndex);
+      }
+
+      function search(query) {
+          var searchHits = searchIndex.search(query);
+          var results = searchHits.map(function (result) {
+              return lunrData.filter(function (d) {
+                  return d.id === result.ref;
+              })[0]
+          });
+          postMessage({ type: 'search-results', results: results, query: query });
+      }
+    </script>
+    <title>Tech Guide</title>
+  </head>
+  <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
+  <body pageid="31260673">
+    <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
+
+    <header class="header hc-header-background-color">
+      <nav class="header__navigation">
+        <div id="vp-js-mobile__header-bar"></div>
+
+        <div
+          class="off-canvas in-canvas-for-large position-right hc-header-background-color"
+          id="site-navigation"
+          data-off-canvas
+          data-transition="overlap"
+        >
+          <div
+            class="top-bar header__navigation--large hc-header-background-color hc-header-font-color"
+            style="max-width: 100%"
+          >
+            <div class="top-bar-left">
+              <ul class="menu hc-header-background-color list-none p-0 m-0">
+                <li
+                  class="menu-text align-self-middle header__navigation--logo"
+                >
+                  <a href="Tech Guide.31260673.html">
+                    <img
+                      src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+                      alt="Tech-Team-Tracker"
+                      title="Tech-Team-Tracker"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="top-bar-right no-print">
+              <div
+                class="header__navigation--large__menu hc-header-background-color"
+              >
+                <ul class="menu">
+                  <li class="small-order-1 large-order-6">
+                    <div
+                      data-vp-id="search-bar-placeholder"
+                      data-vp-component="search-bar"
+                      class="vp-search-bar"
+                      aria-hidden="true"
+                    >
+                      <form
+                        action="/search.html"
+                        method="GET"
+                        class="vp-search-bar__input-container"
+                      >
+                        <div
+                          data-vp-component="search-input"
+                          data-vp-variant="border"
+                          class="vp-search-input vp-search-input--border"
+                        >
+                          <input
+                            type="search"
+                            id="search-texbox"
+                            autocomplete="off"
+                            class="vp-search-input__input"
+                            style="margin-right: 0"
+                          />
+                          <div class="vp-search-input__icon" aria-hidden="true">
+                            <span
+                              class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"
+                            ></span>
+                          </div>
+                        </div>
+                      </form>
+                      <div
+                        id="search-suggestion-container"
+                        class="vp-search-suggestion-panel"
+                        data-vp-component="search-suggestion"
+                      ></div>
+                      <template id="search-suggestion-option-template">
+                        <div
+                          class="vp-search-suggestion-option-container vp-search-form__suggestion"
+                        >
+                          <a
+                            class="vp-search-suggestion-option vp-search-form__suggestion"
+                            href=""
+                          ></a>
+                        </div>
+                      </template>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div
+        class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide"
+      >
+        <div class="flex">
+          <div id="exp-navigation-wrapper" class="hidden lg:block">
+            <iframe src="toc.html?pageId=31260673" class="border-0"></iframe>
+          </div>
+
+          <div
+            class="vp-article__content-panel flex-auto grid-container full js-loading"
+            id="article-content"
+          >
+            <article role="article">
+              <header>
+                <nav aria-label="Breadcrumb" role="navigation">
+                  <div class="breadcrumbs-wrapper">
+                    <ol
+                      class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb"
+                    >
+                      <li class="breadcrumbs--active js-hide-until-loaded">
+                        <a
+                          href="Tech Guide.31260673.html"
+                          target="_self"
+                          aria-current="page"
+                          >Tech Guide</a
+                        >
+                      </li>
+                    </ol>
+                    <div class="breadcrumbs-wrapper__scroll-mask"></div>
+                  </div>
+                </nav>
+                <!-- CSS class article__heading is deprecated and will be removed in the future -->
+                <h1
+                  class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                  role="heading"
+                  data-scroll-heading-rank="1"
+                  data-scroll-original-heading-rank="1"
+                  data-scroll-relative-heading-rank="1"
+                  id="no-src_generated-id-5c0600ae5a9fa07e3c3c1f03cba44e02e10f72f4c20fd1c3396714164e3d94cf"
+                >
+                  <span class="js-hide-until-loaded">Tech Guide</span>
+                </h1>
+              </header>
+              <section class="page" id="content" role="main">
+                <div
+                  id="vp-js-desktop__navigation__skip-to-navigation-target"
+                ></div>
+                <div
+                  id="main-content"
+                  class="wiki-content article__content js-tocBot-content js-hide-until-loaded"
+                >
+                  <div class="contentLayout2">
+                    <div
+                      class="columnLayout two-right-sidebar"
+                      data-layout="two-right-sidebar"
+                    >
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="1. Introduction.29556737.html"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="1. Introduction.29556737.html"
+                            data-scroll-link-local="false"
+                            >1. Introduction
+                          </a>
+                          <p>
+                            This guide will walk through the end to end
+                            technical flow on getting on-boarded to ONDC
+                            network. As a first step, understand ONDC ecosystem
+                            and the participants involved in making the digital
+                            commerce transactions happen in an open unbundled
+                            network. Kindly go through the below resources.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p style="text-align: center"></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-STEP1"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 1</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-left-sidebar"
+                      data-layout="two-left-sidebar"
+                    >
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p></p>
+                          <p></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-STEP2"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 2</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="2. On-boarding.30244871.html"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="2. On-boarding.30244871.html"
+                            data-scroll-link-local="false"
+                            >2. On-Boarding</a
+                          >
+                          <p>
+                            What role will your organization play on ONDC? You
+                            can use the following documents to help you
+                            determine your role on the network:
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-right-sidebar"
+                      data-layout="two-right-sidebar"
+                    >
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="3. Understanding the APIs.30212102.html"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="3. Understanding the APIs.30212102.html"
+                            data-scroll-link-local="false"
+                            >3. Understanding the APIs</a
+                          >
+                          <p>
+                            ONDC Protocol’s layered architecture is illustrated
+                            as shown in the diagram below. The base layer refers
+                            to the Beckn Protocol which is an open source
+                            decentralized protocol. Over the base layer, the
+                            network extension layer comprises the API contracts
+                            customized to the ONDC context along with other
+                            specs that have been adopted in order to facilitate
+                            transactions in the network.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-STEP3"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 3</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-left-sidebar"
+                      data-layout="two-left-sidebar"
+                    >
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-Step4"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 4</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="4. Developing the APIs.29360446.html"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="4. Developing the APIs.29360446.html"
+                            data-scroll-link-local="false"
+                            >4. Developing the APIs</a
+                          >
+
+                          <div
+                            id="main-content"
+                            class="wiki-content article__content js-tocBot-content js-hide-until-loaded"
+                          >
+                            <p>
+                              This guide will walk through the end to end
+                              requirements and flow to develop the APIs required
+                              to facilitate the transaction between consumer and
+                              provider.
+                            </p>
+                            <p></p>
+                            <div
+                              class="panel"
+                              style="
+                                background-color: #deebff;
+                                border-width: 1px;
+                              "
+                            >
+                              <div
+                                class="panelContent"
+                                style="background-color: #deebff"
+                              >
+                                <p>
+                                  <strong>ONDC Reference Applications</strong>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-right-sidebar"
+                      data-layout="two-right-sidebar"
+                    >
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="5. Authorization.31064072.html"
+                            data-card-appearance="block"
+                            rel="nofollow"
+                            data-scroll-target-source-id="31064072"
+                            class="scroll-document-link"
+                            data-scroll-link-type="document"
+                            data-scroll-link-target="5. Authorization.31064072.html"
+                            data-scroll-link-target-source-id="31064072"
+                            >5. Authorization</a
+                          >
+                          <p>
+                            When communicating over HTTP using Beckn APIs, the
+                            subscribers need to authenticate themselves to
+                            perform transactions with other subscribers. Due to
+                            the commercial nature of the transactions, every
+                            request/callback pair is considered to be a
+                            "contract" between two parties. Therefore, it is
+                            imperative that all requests and callbacks are
+                            digitally signed by the sender and subsequently
+                            verified by the receiver. Below document describes a
+                            way for network subscribers (BAP/BPPs) and proxy
+                            subscribers (BGs) to simultaneously add
+                            authentication and message integrity to HTTP
+                            messages by using digital signatures.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p style="text-align: center"></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-Step5"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 5</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-left-sidebar"
+                      data-layout="two-left-sidebar"
+                    >
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p style="text-align: center"></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-Step6"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 6</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="6. Staging Environment.29720683.html"
+                            data-card-appearance="block"
+                            rel="nofollow"
+                            data-scroll-target-source-id="29720683"
+                            class="scroll-document-link"
+                            data-scroll-link-type="document"
+                            data-scroll-link-target="6. Staging Environment.29720683.html"
+                            data-scroll-link-target-source-id="29720683"
+                            >6. Staging Environment</a
+                          >
+                          <p>
+                            Staging, as the name defines is the first
+                            integration point to get you on-boarded to the
+                            network.
+                          </p>
+                          <p>
+                            ONDC Team has created a sandbox environment where
+                            all early stage network participants can test
+                            end-to-end transactions.
+                          </p>
+                          <p></p>
+                          <div
+                            class="confluence-information-macro confluence-information-macro-information"
+                          >
+                            <span
+                              class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"
+                            ></span>
+                            <div class="confluence-information-macro-body">
+                              <p><strong>ONDC Staging Endpoints</strong></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-right-sidebar"
+                      data-layout="two-right-sidebar"
+                    >
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="7. Pre-Production.29360515.html"
+                            data-card-appearance="block"
+                            rel="nofollow"
+                            data-scroll-target-source-id="29360515"
+                            class="scroll-document-link"
+                            data-scroll-link-type="document"
+                            data-scroll-link-target="7. Pre-Production.29360515.html"
+                            data-scroll-link-target-source-id="29360515"
+                            >7. Pre-Production</a
+                          >
+                          <p>
+                            Pre-Production is the&nbsp; environment where
+                            Network Participants test their development to
+                            receive certification to move to ONDC Production
+                            Environment.
+                          </p>
+                          <p></p>
+                          <div
+                            class="confluence-information-macro confluence-information-macro-information"
+                          >
+                            <span
+                              class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"
+                            ></span>
+                            <div class="confluence-information-macro-body">
+                              <p>
+                                <strong>ONDC Pre-Production Endpoints</strong>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p style="text-align: center"></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-Step7"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 7</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="columnLayout two-left-sidebar"
+                      data-layout="two-left-sidebar"
+                    >
+                      <div class="cell aside" data-type="aside">
+                        <div class="innerCell">
+                          <p style="text-align: center"></p>
+                          <h1
+                            style="text-align: center"
+                            id="TechGuide-Step8"
+                            data-scroll-heading-rank="1"
+                            data-scroll-original-heading-rank="1"
+                            data-scroll-relative-heading-rank="1"
+                            class="scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                          >
+                            <strong
+                              ><span style="color: rgb(64, 50, 148)"
+                                ><u>STEP 8</u></span
+                              ></strong
+                            >
+                          </h1>
+                        </div>
+                      </div>
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="8. Production.30867487.html"
+                            data-card-appearance="block"
+                            rel="nofollow"
+                            data-scroll-target-source-id="30867487"
+                            class="scroll-document-link"
+                            data-scroll-link-type="document"
+                            data-scroll-link-target="8. Production.30867487.html"
+                            data-scroll-link-target-source-id="30867487"
+                            >8. Production</a
+                          >
+                          <p>
+                            Production is the live environment where live
+                            transactions take place with transfer of goods and
+                            services. Your team must have met the compliance
+                            requirements for moving to Production.
+                          </p>
+                          <p>
+                            Successfully surpassing the threshold for functional
+                            testing and complying with the final checklist on
+                            Pre-Production will enable an NP to move to
+                            Production environment
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="bottom_columns" data-layout="three-equal">
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="Support.30867500.html"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="Support.30867500.html"
+                            data-scroll-link-local="false"
+                            >Support</a
+                          >
+                          <div
+                            class="columnLayout fixed-width"
+                            data-layout="fixed-width"
+                          >
+                            <div data-type="normal">
+                              <div>
+                                <p>
+                                  ONDC Team uses the following channels to
+                                  communicate with early stage participants:
+                                </p>
+                                <p></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="columnLayout two-equal"
+                            data-layout="two-equal"
+                          >
+                            <div class="cell normal" data-type="normal">
+                              <div class="innerCell">
+                                <p style="text-align: center">
+                                  <strong>ONDC Slack&nbsp;</strong>
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      You can download slack using this
+                                      <a
+                                        shape="rect"
+                                        href="https://slack.com/intl/en-in/"
+                                        class="external-link scroll-external-link"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                        data-scroll-link-type="default"
+                                        data-scroll-link-target="https://slack.com/intl/en-in/"
+                                        data-scroll-link-local="false"
+                                        ><u>link</u></a
+                                      >
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Network Participants can use Slack to
+                                      interact with one another and collaborate
+                                      on integration or testing
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Slack acts like a repository of all
+                                      queries and questions that have been
+                                      raised by various Network Participants in
+                                      the past
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      The SPOCs mentioned in the NP Profile form
+                                      will be added to the Slack channel by the
+                                      ONDC Team
+                                    </p>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="cell normal" data-type="normal">
+                              <div class="innerCell">
+                                <p style="text-align: center">
+                                  <strong>Community Calls</strong>
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Community Calls are organised to provide
+                                      Network Participants an opportunity to
+                                      interact with the ONDC Team
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      The recordings and presentations from
+                                      previous calls can be found on this
+                                      <a
+                                        shape="rect"
+                                        href="https://docs.google.com/spreadsheets/d/1ExPdLmlwbQyumucQE-k3TO55D5AjdbHTn-w3f3Yfs5I/edit#gid=0"
+                                        data-card-appearance="inline"
+                                        class="external-link scroll-external-link"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                        data-scroll-link-type="default"
+                                        data-scroll-link-target="https://docs.google.com/spreadsheets/d/1ExPdLmlwbQyumucQE-k3TO55D5AjdbHTn-w3f3Yfs5I/edit#gid=0"
+                                        data-scroll-link-local="false"
+                                        >https://docs.google.com/spreadsheets/d/1ExPdLmlwbQyumucQE-k3TO55D5AjdbHTn-w3f3Yfs5I/edit#gid=0</a
+                                      >
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Community Calls provide a great forum to
+                                      get your queries answered
+                                    </p>
+                                  </li>
+                                </ul>
+                                <p>
+                                  Call Details – Tuesday 4.30 - 5.30 PM,
+                                  <a
+                                    shape="rect"
+                                    href="https://calendar.google.com/calendar/u/2/r/eventedit/bGRyZTEydjRzYjNoczY0ODhpNTFnbTUxZWtfMjAyMjA4MTZUMTEwMDAwWiBtZWVuYWtzaGlAb25kYy5vcmc?tab=oc"
+                                    class="external-link scroll-external-link"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    data-scroll-link-type="default"
+                                    data-scroll-link-target="https://calendar.google.com/calendar/u/2/r/eventedit/bGRyZTEydjRzYjNoczY0ODhpNTFnbTUxZWtfMjAyMjA4MTZUMTEwMDAwWiBtZWVuYWtzaGlAb25kYy5vcmc?tab=oc"
+                                    data-scroll-link-local="false"
+                                    ><u>Meeting Link</u></a
+                                  >
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="FAQs.31260696.html"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="FAQs.31260696.html"
+                            data-scroll-link-local="false"
+                            >FAQs</a
+                          >
+                          <p>We are already integrated with logistic partners. Our sellers will use these logistic partners’ services to deliver the order to customers. Sellers can do the delivery by their local delivery boy as well in case of hyper-local delivery. Let us know if it will work for us as a TSP provider to go live in MVP.</p></li></ul><p style="margin-left: 60.0px;"><strong>Yes, Off-network logistics will also work temporarily but we would strongly advise you to please integrate with the On-network logistics</strong></p><hr><ul><li><p>What should be the response time of on_search, On_select, On_init, and other APIS after acknowledging the request from search, select and another API?</p>
+                        </div>
+                      </div>
+                      <div class="cellnormal" data-type="normal">
+                        <div class="innerCell">
+                          <a
+                            shape="rect"
+                            href="Release Plan.31293464.html"
+                            data-card-appearance="block"
+                            rel="nofollow"
+                            data-scroll-target-source-id="31293464"
+                            class="scroll-document-link"
+                            data-scroll-link-type="document"
+                            data-scroll-link-target="https://ondc-issue-logging-cohort1.atlassian.net/wiki/spaces/TTT/pages/31293464/Release+Plan"
+                            data-scroll-link-target-source-id="31293464"
+                            >Release Plan</a
+                          >
+                          <div >
+                            <p>Please find below the release plan for ONDC core APIs:</p><a shape="rect" href="https://docs.google.com/spreadsheets/d/1Yq9hEX7Zz23s190sC_8n_WdSB8L0-bJY57NVCCiYugo/edit#gid=51391431" data-card-appearance="block" class="external-link scroll-external-link" rel="noopener noreferrer" target="_blank" data-scroll-link-type="default" data-scroll-link-target="https://docs.google.com/spreadsheets/d/1Yq9hEX7Zz23s190sC_8n_WdSB8L0-bJY57NVCCiYugo/edit#gid=51391431" data-scroll-link-local="false">https://docs.google.com/spreadsheets/d/1Yq9hEX7Zz23s190sC_8n_WdSB8L0-bJY57NVCCiYugo/edit#gid=51391431</a>
+    <nav id="ht-post-nav">
+            <a href="FAQs.31260696.html" class="ht-post-nav-prev">
+                <svg width="22px" height="22px" viewbox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                    <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                        <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2" sketch:type="MSShapeGroup" transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                    </g>
+                </svg>
+                <span>FAQs</span>
+            </a>
+    
+    </nav>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <nav id="ht-post-nav">
+                    <a
+                      href="5. Authorization.31064072.html"
+                      class="ht-post-nav-next"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>5. Authorization</span>
+                    </a>
+                  </nav>
+                </div>
+              </section>
+            </article>
+          </div>
+
+          <div
+            class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print"
+          >
+            <div
+              class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars"
+            >
+              <div class="js-tocBot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="vp-js-mobile__navigation">
+      <div
+        tabindex="-1"
+        class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger"
+      >
+        <button
+          type="button"
+          class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center"
+          aria-label="navigation.open.label"
+        >
+          <div class="vp-mobile-navigation__button__icon relative">
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

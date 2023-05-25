@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" data-vp-page-id="31064072">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="source-last-modified" content="2023-05-25T05:39Z" />
+
+    <link
+      rel="shortcut icon"
+      href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+    />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="5. Authorization" />
+
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script id="search-worker" type="javascript/worker">
+      onmessage = function(event) {
+          // dispatch events to handling functions
+          var message = event.data;
+
+          if ((message.type === 'setup') && message.baseUrl) {
+              setup(message.baseUrl);
+          }
+
+          if (message.type === 'search-request') {
+              search(message.query);
+          }
+      }
+
+      var searchIndex;
+
+      function setup(baseUrl) {
+          importScripts(
+              baseUrl + 'js/lunr.js',
+              baseUrl + 'js/lunr-index.js',
+              baseUrl + 'js/lunr-data.js'
+          );
+          try {
+              // load lunr-extras if it exists, which contains language-specific files for languages other than english
+              importScripts(baseUrl + 'js/lunr-extras.js');
+          } catch (e) {}
+          searchIndex = lunr.Index.load(lunrIndex);
+      }
+
+      function search(query) {
+          var searchHits = searchIndex.search(query);
+          var results = searchHits.map(function (result) {
+              return lunrData.filter(function (d) {
+                  return d.id === result.ref;
+              })[0]
+          });
+          postMessage({ type: 'search-results', results: results, query: query });
+      }
+    </script>
+    <title>5. Authorization</title>
+  </head>
+  <!-- pageid attribute is deprecated - please use data-vp-page-id on html element instead -->
+  <body pageid="31064072">
+    <div id="vp-js-desktop__navigation__skip-to-navigation-link"></div>
+
+    <header class="header hc-header-background-color">
+      <nav class="header__navigation">
+        <div id="vp-js-mobile__header-bar"></div>
+
+        <div
+          class="off-canvas in-canvas-for-large position-right hc-header-background-color"
+          id="site-navigation"
+          data-off-canvas
+          data-transition="overlap"
+        >
+          <div
+            class="top-bar header__navigation--large hc-header-background-color hc-header-font-color"
+            style="max-width: 100%"
+          >
+            <div class="top-bar-left">
+              <ul class="menu hc-header-background-color list-none p-0 m-0">
+                <li
+                  class="menu-text align-self-middle header__navigation--logo"
+                >
+                  <a href="Tech Guide.31260673.html">
+                    <img
+                      src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+                      alt="Tech-Team-Tracker"
+                      title="Tech-Team-Tracker"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="top-bar-right no-print">
+              <div
+                class="header__navigation--large__menu hc-header-background-color"
+              >
+                <ul class="menu">
+                  <li class="small-order-1 large-order-6">
+                    <div
+                      data-vp-id="search-bar-placeholder"
+                      data-vp-component="search-bar"
+                      class="vp-search-bar"
+                      aria-hidden="true"
+                    >
+                      <form
+                        action="/search.html"
+                        method="GET"
+                        class="vp-search-bar__input-container"
+                      >
+                        <div
+                          data-vp-component="search-input"
+                          data-vp-variant="border"
+                          class="vp-search-input vp-search-input--border"
+                        >
+                          <input
+                            type="search"
+                            id="search-texbox"
+                            autocomplete="off"
+                            class="vp-search-input__input"
+                            style="margin-right: 0"
+                          />
+                          <div class="vp-search-input__icon" aria-hidden="true">
+                            <span
+                              class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"
+                            ></span>
+                          </div>
+                        </div>
+                      </form>
+                      <div
+                        id="search-suggestion-container"
+                        class="vp-search-suggestion-panel"
+                        data-vp-component="search-suggestion"
+                      ></div>
+                      <template id="search-suggestion-option-template">
+                        <div
+                          class="vp-search-suggestion-option-container vp-search-form__suggestion"
+                        >
+                          <a
+                            class="vp-search-suggestion-option vp-search-form__suggestion"
+                            href=""
+                          ></a>
+                        </div>
+                      </template>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div
+        class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide"
+      >
+        <div class="flex">
+          <div id="exp-navigation-wrapper" class="hidden lg:block">
+            <iframe src="toc.html?pageId=31064072" class="border-0"></iframe>
+          </div>
+
+          <div
+            class="vp-article__content-panel flex-auto grid-container full js-loading"
+            id="article-content"
+          >
+            <article role="article">
+              <header>
+                <nav aria-label="Breadcrumb" role="navigation">
+                  <div class="breadcrumbs-wrapper">
+                    <ol
+                      class="breadcrumbs breadcrumbs--fit-content js-loading js-loading__stacked js-loading__stacked--breadcrumb"
+                    >
+                      <li class="js-hide-until-loaded">
+                        <a
+                          href="Tech Guide.31260673.html"
+                          rel="prev"
+                          target="_self"
+                          class="js-breadcrumbs-truncate"
+                          >Tech Guide</a
+                        >
+                      </li>
+                      <li class="breadcrumbs--active js-hide-until-loaded">
+                        <a
+                          href="5. Authorization.31064072.html"
+                          target="_self"
+                          aria-current="page"
+                          >5. Authorization</a
+                        >
+                      </li>
+                    </ol>
+                    <div class="breadcrumbs-wrapper__scroll-mask"></div>
+                  </div>
+                </nav>
+                <!-- CSS class article__heading is deprecated and will be removed in the future -->
+                <h1
+                  class="cell vp-article__heading article__heading js-loading js-loading__stacked js-loading__stacked--heading scroll-h1 scroll-original-h1 scroll-relative-h1 scroll-custom-section-heading scroll-document-section-heading"
+                  role="heading"
+                  data-scroll-heading-rank="1"
+                  data-scroll-original-heading-rank="1"
+                  data-scroll-relative-heading-rank="1"
+                  id="no-src_generated-id-2d9f8241af13637ca2ee7cb028719b18d1834b2d05abd5bcc14e171ada15d559"
+                >
+                  <span class="js-hide-until-loaded">5. Authorization</span>
+                </h1>
+              </header>
+              <section class="page" id="content" role="main">
+                <div
+                  id="vp-js-desktop__navigation__skip-to-navigation-target"
+                ></div>
+                <div
+                  id="main-content"
+                  class="wiki-content article__content js-tocBot-content js-hide-until-loaded"
+                >
+                  <div class="contentLayout2">
+                    <div
+                      class="columnLayout fixed-width"
+                      data-layout="fixed-width"
+                    >
+                      <div class="cell normal" data-type="normal">
+                        <div class="innerCCell">
+                          <p>
+                            When communicating over HTTP using Beckn APIs, the
+                            subscribers need to authenticate themselves to
+                            perform transactions with other subscribers. Due to
+                            the commercial nature of the transactions, every
+                            request/callback pair is considered to be a
+                            "contract" between two parties. Therefore, it is
+                            imperative that all requests and callbacks are
+                            digitally signed by the sender and subsequently
+                            verified by the receiver.
+                          </p>
+                          <p>
+                            Below document describes a way for network
+                            subscribers (BAP/BPPs) and proxy subscribers (BGs)
+                            to simultaneously add authentication and message
+                            integrity to HTTP messages by using digital
+                            signatures.
+                          </p>
+                          <div class="cellnormal" data-type="normal">
+                            <div class="introductionInnerCell">
+                              <a
+                                href="https://docs.google.com/document/d/1Iw_x-6mtfoMh0KJwL4sqQYM0kD17MLxiMCUOZDBerBo/edit?usp=sharing"
+                              >
+                                Signing Beckn APIs in HTTP
+                              </a>
+                              <p>
+                                Signing Beckn APIs in HTTP Introduction When
+                                communicating over HTTP using Beckn APIs, the
+                                subscribers need to authenticate themselves to
+                                perform transactions with other subscribers. Due
+                                to the commercial nature of the transactions,
+                                every request/callback pair is…
+                              </p>
+                            </div>
+                          </div>
+                          <!-- <a
+                            shape="rect"
+                            href="https://docs.google.com/document/d/1Iw_x-6mtfoMh0KJwL4sqQYM0kD17MLxiMCUOZDBerBo/edit?usp=sharing"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="https://docs.google.com/document/d/1Iw_x-6mtfoMh0KJwL4sqQYM0kD17MLxiMCUOZDBerBo/edit?usp=sharing"
+                            data-scroll-link-local="false"
+                            >https://docs.google.com/document/d/1Iw_x-6mtfoMh0KJwL4sqQYM0kD17MLxiMCUOZDBerBo/edit?usp=sharing</a
+                          > -->
+                          <p></p>
+                          <p>
+                            Here is a document to help you with the requirements
+                            and understanding the Auth Header Signing and
+                            Verification process and utilities available for the
+                            same.
+                          </p>
+                          <div class="cellnormal" data-type="normal">
+                            <div class="introductionInnerCell">
+                              <a
+                                href="https://docs.google.com/document/d/1-xECuAHxzpfF8FEZw9iN3vT7D3i6yDDB1u2dEApAjPA/edit?usp=sharing"
+                              >
+                                Auth Header - signing and verification
+                              </a>
+                              <p>
+                                Revision History Version Date Changes 0.1 14th
+                                Oct 2022 Initial draft Pre-requisites Key pairs,
+                                for signing & encryption, can be generated using
+                                libsodium. Creating Key Pairs Create key pairs,
+                                for signing (ed25519) & encryption (X25519);
+                                Update base64 encoded public keys in…
+                              </p>
+                            </div>
+                          </div>
+                          <!-- <a
+                            shape="rect"
+                            href="https://docs.google.com/document/d/1-xECuAHxzpfF8FEZw9iN3vT7D3i6yDDB1u2dEApAjPA/edit?usp=sharing"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="https://docs.google.com/document/d/1-xECuAHxzpfF8FEZw9iN3vT7D3i6yDDB1u2dEApAjPA/edit?usp=sharing"
+                            data-scroll-link-local="false"
+                            >https://docs.google.com/document/d/1-xECuAHxzpfF8FEZw9iN3vT7D3i6yDDB1u2dEApAjPA/edit?usp=sharing</a
+                          > -->
+                          <p></p>
+                          <p>
+                            <strong
+                              ><span style="color: rgb(0, 184, 217)"
+                                >Signing and Verification Utilities</span
+                              ></strong
+                            >: This utility will help you generate key pairs,
+                            create/verify authorization headers.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columnLayout two-equal" data-layout="two-equal">
+                      <div class="cell normal" data-type="normal">
+                        <div class="introductionInnerCell">
+                          <a
+                            href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/signing_and_verification"
+                          >
+                            referenceimplementations/utilities/signing_and_verification
+                          </a>
+                          <p>
+                            referenceimplementations/utilities/signing_and_verifi…
+                            ONDC reference apps. Contribute to
+                            ONDCOfficial/reference-implementations development
+                            by creating an account on GitHub.
+                          </p>
+                          <!-- <a
+                            shape="rect"
+                            href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/signing_and_verification"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/signing_and_verification"
+                            data-scroll-link-local="false"
+                            >https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/signing_and_verification</a
+                          > -->
+                        </div>
+                      </div>
+                      <div class="cell normal" data-type="normal">
+                        <div class="introductionInnerCell">
+                          <!-- <a
+                            shape="rect"
+                            href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/ondc-crypto-utility-master"
+                            data-card-appearance="block"
+                            class="external-link scroll-external-link"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            data-scroll-link-type="default"
+                            data-scroll-link-target="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/ondc-crypto-utility-master"
+                            data-scroll-link-local="false"
+                            >https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/ondc-crypto-utility-master</a
+                          > -->
+                          <a
+                            href="https://github.com/ONDC-Official/reference-implementations/tree/main/utilities/ondc-crypto-utility-master"
+                          >
+                            reference-implementations/utilities/ondccrypto-utility-master
+                            at main · ONDC-…
+                          </a>
+                          <p>
+                            ONDC reference apps. Contribute to
+                            ONDCOfficial/reference-implementations development
+                            by creating an account on GitHub.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="columnLayout fixed-width"
+                      data-layout="fixed-width"
+                    >
+                      <div class="cell normal" data-type="normal">
+                        <div class="innerCell">
+                          <p></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <nav id="ht-post-nav">
+                    <a href="Tech Guide.31260673.html" class="ht-post-nav-prev">
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>Tech Guide</span>
+                    </a>
+
+                    <a
+                      href="1. Introduction.29556737.html"
+                      class="ht-post-nav-next"
+                    >
+                      <svg
+                        width="22px"
+                        height="22px"
+                        viewbox="0 0 22 22"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                      >
+                        <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                          <path
+                            fill="#000000"
+                            d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z"
+                            id="Rectangle-2"
+                            sketch:type="MSShapeGroup"
+                            transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "
+                          ></path>
+                        </g>
+                      </svg>
+                      <span>1. Introduction</span>
+                    </a>
+                  </nav>
+                </div>
+              </section>
+            </article>
+          </div>
+
+          <div
+            class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print"
+          >
+            <div
+              class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars"
+            >
+              <div class="js-tocBot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="vp-js-mobile__navigation">
+      <div
+        tabindex="-1"
+        class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger"
+      >
+        <button
+          type="button"
+          class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center"
+          aria-label="navigation.open.label"
+        >
+          <div class="vp-mobile-navigation__button__icon relative">
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+            <div class="absolute w-full"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

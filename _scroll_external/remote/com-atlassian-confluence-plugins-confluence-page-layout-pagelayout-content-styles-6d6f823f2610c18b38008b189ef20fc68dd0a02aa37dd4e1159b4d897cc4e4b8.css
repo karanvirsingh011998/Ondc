@@ -1,0 +1,2 @@
+/* module-key = 'com.atlassian.confluence.plugins.confluence-page-layout:pagelayout-content-styles', location = 'css/pagelayout/page-layout-content.css' */
+.wiki-content .contentLayout2 .columnLayout .cell{padding-left:15px;padding-right:15px}.wiki-content .contentLayout2{margin:0 -15px}.wiki-content .contentLayout2 .columnLayout.fixed-width{max-width:700px;margin:auto}.wiki-content .contentLayout2 .columnLayout.fixed-width .cell{padding:0}

@@ -1,0 +1,270 @@
+
+
+<!doctype html>
+
+<html class="no-js" lang="en" data-vp-page-id="search-results-page">
+    <!-- Shallow copy of head.vm -->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible"
+              content="ie=edge">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1"/>
+
+        <link rel="shortcut icon"
+              href="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0">
+
+        <!-- Primary Meta Tags -->
+        <meta name="title" content="Search Results">
+
+
+        <link rel="stylesheet" href="css/app.css"/>
+
+
+
+<script id="search-worker" type="javascript/worker">
+    onmessage = function(event) {
+        // dispatch events to handling functions
+        var message = event.data;
+
+        if ((message.type === 'setup') && message.baseUrl) {
+            setup(message.baseUrl);
+        }
+
+        if (message.type === 'search-request') {
+            search(message.query);
+        }
+    }
+
+    var searchIndex;
+
+    function setup(baseUrl) {
+        importScripts(
+            baseUrl + 'js/lunr.js',
+            baseUrl + 'js/lunr-index.js',
+            baseUrl + 'js/lunr-data.js'
+        );
+        try {
+            // load lunr-extras if it exists, which contains language-specific files for languages other than english
+            importScripts(baseUrl + 'js/lunr-extras.js');
+        } catch (e) {}
+        searchIndex = lunr.Index.load(lunrIndex);
+    }
+
+    function search(query) {
+        var searchHits = searchIndex.search(query);
+        var results = searchHits.map(function (result) {
+            return lunrData.filter(function (d) {
+                return d.id === result.ref;
+            })[0]
+        });
+        postMessage({ type: 'search-results', results: results, query: query });
+    }
+</script>        <title class="search-page-title" >Search Results</title>
+
+    </head>
+    <body>
+
+        <!-- Shallow copy of header.vm -->
+        <header class="header hc-header-background-color">
+            <nav class="header__navigation">
+                <div id="vp-js-mobile__header-bar">
+                </div>
+
+                <div class="off-canvas in-canvas-for-large position-right hc-header-background-color"
+                     id="site-navigation"
+                     data-off-canvas
+                     data-transition="overlap">
+                    <div class="top-bar header__navigation--large hc-header-background-color hc-header-font-color" style="max-width: 100%">
+                        <div class="top-bar-left">
+                            <ul class="menu hc-header-background-color list-none p-0 m-0">
+                                <li class="menu-text align-self-middle header__navigation--logo">
+                                    <a href="Tech Guide.31260673.html">
+                                        <img src="_scroll_external/attachments/ttt-default-da176c3e3eb962f47f7635cc563f94f270a1c48730129798e46d98d36db242b0"
+                                             alt="31260673"
+                                             title="31260673"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="top-bar-right no-print">
+                            <div class="header__navigation--large__menu hc-header-background-color">
+                                <ul class="menu">
+                                    <li class="small-order-1 large-order-6">
+    
+
+    <div
+        data-vp-id="search-bar-placeholder"
+        data-vp-component="search-bar"
+        class="vp-search-bar"
+        aria-hidden="true"
+    >
+        <form
+            action="/search.html"
+            method="GET"
+            class="vp-search-bar__input-container"
+        >
+            <div
+                data-vp-component="search-input"
+                data-vp-variant="border"
+                class="vp-search-input vp-search-input--border"
+            >
+                <input
+                    type="search"
+                    id="search-texbox"
+                    autocomplete="off"
+                    class="vp-search-input__input"
+                    style="margin-right: 0;"
+                />
+                <div
+                        class="vp-search-input__icon"
+                        aria-hidden="true"
+                >
+                    <span class="vp-icon material-icons mdi-magnify w-6 h-6 text-icon-md"/>
+                </div>
+            </div>
+        </form>
+        <div id="search-suggestion-container" class="vp-search-suggestion-panel" data-vp-component="search-suggestion"></div>
+        <template id="search-suggestion-option-template">
+            <div class="vp-search-suggestion-option-container vp-search-form__suggestion">
+                <a class="vp-search-suggestion-option vp-search-form__suggestion" href=""></a>
+            </div>
+        </template>
+    </div>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+
+        <main>
+            <div class="vp-article vp-container vp-container--with-content-padding article vp-container--full full vp-article--wide">
+                    <div class="flex">
+                        <div id="exp-navigation-wrapper" class="hidden lg:block" >
+                            <iframe
+                                    src="toc.html?pageId=search-results-page"
+                                    class="border-0"
+                            ></iframe>
+                        </div>
+                        <div id="article-content" class="vp-article__content-panel flex-auto">
+                            <article role="article">
+                                <h1>Search Results</h1>
+                                <h3 id="results-label" class="search-result-info">Search for</h3>
+                                <h3 id="query-value" class="search-result-info query-style"></h3>
+                                <h3 id="result-count" class="search-result-info"></h3>
+                                <section>
+                                    <div id="search-results-container" class="search-results-panel"></div>
+                                    <template id="search-results-template">
+                                        <div class="search-result-option">
+                                            <h2  class="search-result-heading">
+                                                <a class="search-result-option" href=""></a>
+                                            </h2>
+                                            <small></small>
+                                        </div>
+                                    </template>
+                                </section>
+                            </article>
+                        </div>
+                        <div class="vp-article__aside-right flex-grow-0 flex-shrink-0 w-1/6 article__toc hidden xl:block no-print">
+                            <div class="vp-scrollable-container vp-scrollable-container--hidden-scrollbars">
+                            <!-- keeping divs for margins/styling between main content and side-bar -->
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </main>
+
+
+        <div id="vp-js-mobile__navigation">
+            <div tabindex="-1" class="vp-mobile-navigation__trigger fixed outline-none z-mobile-menu-trigger">
+                <button type="button" class="vp-button vp-button--variant-floating-action vp-mobile-navigation__button flex items-center justify-center" aria-label="navigation.open.label">
+                    <div class="vp-mobile-navigation__button__icon relative">
+                        <div class="absolute w-full"></div>
+                        <div class="absolute w-full"></div>
+                        <div class="absolute w-full"></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <script src="js/app.js"></script>
+        <script>
+            const searchWorkerTemplate = document.querySelector('#search-worker');
+            const searchResultsContainer = document.querySelector('#search-results-container');
+            const searchResultsTemplate = document.querySelector('#search-results-template');
+
+            function populateSearchResults(results) {
+                const resultCount = document.getElementById("result-count");
+                if(results.length === 0) {
+                    resultCount.textContent = ' returned no results';
+                }
+                else {
+                    resultCount.textContent = ' returned ' + results.length + ' results';
+                }
+                const searchResultLinks = results.map((result) => {
+                    const resultItem = searchResultsTemplate.content.cloneNode(true);
+                    const resultLink = resultItem.querySelector('h2').querySelector('a');
+                    const resultParagraph = resultItem.querySelector('small');
+                    resultLink.textContent = result.title;
+                    resultLink.href = result.link;
+                    const baseUrl = window.location.href.substr(0, window.location.href.lastIndexOf('/') + 1);
+
+                    resultParagraph.appendChild(document.createTextNode(baseUrl+ result.link));
+                    return resultItem;
+                });
+
+                searchResultsContainer.replaceChildren(...searchResultLinks);
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                    // Creates the Web Worker, to overcome the Same-Origin policy the URL is passed to the worker.
+                    const searchWorkerBlob = new Blob([searchWorkerTemplate.textContent]);
+                    const searchWorker = new Worker(URL.createObjectURL(searchWorkerBlob));
+
+                    // send page url to the worker, for script loading
+                    var locationOrigin = window.location.protocol
+                        + "//"
+                        + window.location.hostname
+                        + (
+                            window.location.port
+                            ? ':' + window.location.port
+                            : ''
+                        );
+
+                    //setup worker
+                    var pageLocation = locationOrigin + window.location.pathname;
+                    var url = pageLocation.substr(0, pageLocation.lastIndexOf('/') + 1);
+                    searchWorker.postMessage({ type: "setup", baseUrl: url });
+                    //define which messages should the worker listen to
+                    searchWorker.addEventListener('message', (event) => {
+                        var message = event.data;
+                        if (message.type === 'search-results') {
+                            populateSearchResults(message.results);
+                        }
+                    })
+
+                    //get query from url params and feed it to the worker
+                    const params = new Proxy(new URLSearchParams(window.location.search), {
+                      get: (searchParams, prop) => searchParams.get(prop),
+                    });
+                    let query = params.searchQuery;
+                    document.getElementById("query-value").textContent = query;
+
+                    // check query integrity and send search request
+                    if (query.length >= 3) {
+                        searchWorker.postMessage({
+                            type: 'search-request',
+                            query
+                        });
+                    } else {
+                        populateSearchResults([]);
+                    }
+            });
+        </script>
+    </body>
+</html>
